@@ -11,6 +11,7 @@ function Navbar() {
             <img src={Logo}/>   
         </div>         
         <div className='rightSide'>
+            <Link to = "/ajuda"> Ajuda </Link>
             <Link to = "/entrar"> Entrar </Link>
         </div>
     </div>

@@ -51,6 +51,7 @@ function App() {
           <Route exact path="/esqueceu">
             <Esqueceu />
           </Route>
+          
 
         </Switch>
     </Router>
