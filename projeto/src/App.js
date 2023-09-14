@@ -9,6 +9,8 @@ import Comunidade from './Pages/Comunidade';
 import Mesas from './Pages/Mesas';
 import Jogador from './Pages/Jogador';
 import Footer from './components/Footer';
+import Cadastro from './Pages/Cadastro';
+import Esqueceu from './Pages/Esqueceu';
 
 
 function App() {
@@ -40,6 +42,14 @@ function App() {
 
           <Route exact path="/jogador">
             <Jogador />
+          </Route>
+
+          <Route exact path="/cadastro">
+            <Cadastro />
+          </Route>
+
+          <Route exact path="/esqueceu">
+            <Esqueceu />
           </Route>
 
         </Switch>
