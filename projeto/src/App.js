@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
+import {motion} from 'framer-motion'
 
 import Navbar from './components/Navbar.js';
 import Home from './Pages/Home';
@@ -9,8 +10,6 @@ import Comunidade from './Pages/Comunidade';
 import Mesas from './Pages/Mesas';
 import Jogador from './Pages/Jogador';
 import Footer from './components/Footer';
-import Cadastro from './Pages/Cadastro';
-import Esqueceu from './Pages/Esqueceu';
 
 
 function App() {
@@ -43,15 +42,6 @@ function App() {
           <Route exact path="/jogador">
             <Jogador />
           </Route>
-
-          <Route exact path="/cadastro">
-            <Cadastro />
-          </Route>
-
-          <Route exact path="/esqueceu">
-            <Esqueceu />
-          </Route>
-          
 
         </Switch>
     </Router>
