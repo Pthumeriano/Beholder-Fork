@@ -1,11 +1,11 @@
-.login-page {
+.cadastro-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.login-form {
+.cadastro-form {
     width: 80%;
     max-width: 450px;
     margin: 0 auto;
@@ -17,7 +17,10 @@
     text-align: center;
 }
 
-.form-group input[type="text"] {
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -27,6 +30,32 @@
 }
 
 button[type="submit"] {
+    background-color: transparent;
+    color: #8B0000;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+}
+
+button[type="submit"]:hover {
+    background-color: #8B0000;
+    color: #fff;
+}
+
+.login-link a,
+.signup-link a {
+    color: #8B0000;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+.login-link a:hover,
+.signup-link a:hover {
+    text-decoration: none;
+}
+
+.submit-button {
     width: 100%;
     background-color: transparent;
     color: #8B0000;
@@ -39,23 +68,13 @@ button[type="submit"] {
     margin: 10px 0;
 }
 
-button[type="submit"]:hover {
-    background-color: #8B0000;
-    color: #fff;
+.signup-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.resend-code a,
 .signup-link a {
-    color: #8B0000;
-    text-decoration: none;
-    margin: 10px 0;
-}
-
-.resend-code a:hover,
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-.resend-code {
-    margin: 15px 0;
+    display: inline;
+    margin-left: 5px;
 }
