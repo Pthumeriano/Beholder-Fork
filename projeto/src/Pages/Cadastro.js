@@ -36,7 +36,9 @@ class SignupForm extends Component {
       <div className="login-page">
         <div className="login-form">
           <div className="logo-container">
+            <Link to= "/">
             <img src={logo} alt="Logo" style={{ width: '208px', height: '208px' }} />
+            </Link>
             <h2>Cadastro</h2>
           </div>
 
