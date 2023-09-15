@@ -1,23 +1,14 @@
-
+/* FOOTER STYLES */
 .footer {
   width: 100%;
-<<<<<<< HEAD
   height: 200px;
   background-color: #8B0000;
-=======
-  height: 100px;
-  background-color: #8B0000;  
->>>>>>> 2d6a62133c0bad085cbcd9a0234ff36725f84ecb
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-<<<<<<< HEAD
   position: relative;
   bottom: 0;
-=======
-  padding-top: 10px;
->>>>>>> 2d6a62133c0bad085cbcd9a0234ff36725f84ecb
 }
 
 .socialMedia {
@@ -25,10 +16,6 @@
   gap: 15px;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2d6a62133c0bad085cbcd9a0234ff36725f84ecb
 .socialMedia span {
   cursor: pointer;
 }
@@ -37,11 +24,8 @@
   color: white;
   text-align: center;  
 }
-<<<<<<< HEAD
 
 .content-wrapper {
   margin-top: 100px; 
   margin-bottom: 200px; 
 }
-=======
->>>>>>> 2d6a62133c0bad085cbcd9a0234ff36725f84ecb
