@@ -1,23 +1,11 @@
-/* Ajuda.css */
 
-/* Este é o estilo adicional para centralizar o .ajuda-container na tela */
-html, body, #root, .App { 
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* O seguinte remove qualquer espaço adicional ao redor do content */
-    padding: 0;
-    overflow: hidden; /* Esta linha evita rolagem desnecessária */
-}
 
 .ajuda-container {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    width: 80%; /* Pode ajustar para o tamanho que achar adequado */
-    max-width: 1200px; /* Um valor máximo para não ficar muito largo em telas grandes */
+    width: 80%; 
+    max-width: 1200px; 
 }
 
 .faq, .contato {

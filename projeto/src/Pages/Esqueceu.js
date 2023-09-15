@@ -18,7 +18,6 @@ class ForgotPasswordForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para recuperar a senha
   }
 
   render() {

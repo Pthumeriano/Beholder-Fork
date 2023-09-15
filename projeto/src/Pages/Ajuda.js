@@ -6,7 +6,6 @@ function Ajuda() {
         <div className="ajuda-container">
             <div className="faq">
                 <h2>Perguntas Frequentes</h2>
-                {/* Adicione aqui a lista de perguntas frequentes */}
             </div>
 
             <div className="contato">
