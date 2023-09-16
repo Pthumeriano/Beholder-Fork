@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    width: 80%; /* Pode ajustar para o tamanho que achar adequado */
-    max-width: 1200px; /* Um valor máximo para não ficar muito largo em telas grandes */
+    width: 80%; 
+    max-width: 1200px; 
 }
 
 .faq, .contato {

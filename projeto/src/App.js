@@ -20,20 +20,20 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <Navbar />
-                <div className="content-wrapper">
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/entrar" component={Entrar} />
-                        <Route path="/ajuda" component={Ajuda} />
-                        <Route path="/comunidade" component={Comunidade} />
-                        <Route path="/mesas" component={Mesas} />
-                        <Route path="/jogador" component={Jogador} />
-                        <Route path="/cadastro" component={Cadastro} />
-                        <Route path="/esqueceu" component={Esqueceu} />
-                    </Switch>
-                </div>
-                <Footer />
+                <Switch>
+                    <Route exact path="/">
+                        <Navbar />
+                        <Home />
+                        <Footer />
+                    </Route>
+                    <Route path="/entrar" component={Entrar} />
+                    <Route path="/ajuda" component={Ajuda} />
+                    <Route path="/comunidade" component={Comunidade} />
+                    <Route path="/mesas" component={Mesas} />
+                    <Route path="/jogador" component={Jogador} />
+                    <Route path="/cadastro" component={Cadastro} />
+                    <Route path="/esqueceu" component={Esqueceu} />
+                </Switch>
             </div>
         </Router>
     );

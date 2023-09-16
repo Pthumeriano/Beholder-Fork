@@ -27,7 +27,9 @@ class LoginForm extends Component {
       <div className="login-page">
         <div className="login-form">
           <div className="logo-container">
-            <img src={logo} alt="Logo" style={{ width: '208px', height: '208px' }} /> {/* Defina o tamanho da imagem aqui */}
+            <Link to= "/">
+            <img src={logo} alt="Logo" style={{ width: '208px', height: '208px' }} /> 
+            </Link>
             <h2>Login</h2>
           </div>
 

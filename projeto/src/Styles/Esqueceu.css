@@ -78,3 +78,13 @@ button[type="submit"]:hover {
     display: inline;
     margin-left: 5px;
 }
+
+.resend-code a {
+    color: #8B0000; 
+    text-decoration: none; 
+}
+
+.resend-code a:hover {
+    text-decoration: none;
+    color: #8B0000;
+}

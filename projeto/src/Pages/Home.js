@@ -6,11 +6,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom';
 
 import image1 from '../img/03.png';
 import image2 from '../img/02.jpg';
 import image3 from '../img/05.jpg';
 import Card from './Card';
+
 register();
 
 function Home() {
@@ -29,7 +31,9 @@ function Home() {
 
   return (
     <div className="container">
-      <h1>Título do Slider</h1>
+      <br></br>
+      <br></br>
+      <br></br>
       <Swiper slidesPerView={1} pagination={{ clickable: true }} navigation>
         {data.map((item, index) => (
           <SwiperSlide key={item.id}>
@@ -40,9 +44,10 @@ function Home() {
                   <p className="image-text">
                   <b>Encontre as melhores mesas de RPG!</b><br />
                     Seja você um mestre ou jogador, sua diversão está garantida aqui.
-                 </p>
-                  
-                  <button className="overlay-button">Jogue ainda hoje!</button>
+                  </p>
+                  <Link to="/cadastro">
+                    <button className="overlay-button">Jogue ainda hoje!</button>
+                  </Link>
                 </div>
               )}
             </div>
@@ -59,13 +64,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;
-
-
-//import image1 from './3.png'
-//import image2 from './2.jpg'
-//import image3 from './1.jpg'
-//import image4 from './5.jpg'
-//import image5 from './8.jpg'
-
-//const images= [image1,image2,image3,image4,image5]
