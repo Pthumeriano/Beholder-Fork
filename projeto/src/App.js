@@ -10,6 +10,7 @@ import Mesas from './Pages/Mesas';
 import Jogador from './Pages/Jogador';
 import Cadastro from './Pages/Cadastro';
 import Esqueceu from './Pages/Esqueceu';
+import Deletar from './Pages/Deletar';
 import { createClient } from '@supabase/supabase-js'
 
 // cliente supabase
@@ -33,6 +34,7 @@ function App() {
                     <Route path="/jogador" component={Jogador} />
                     <Route path="/cadastro" component={Cadastro} />
                     <Route path="/esqueceu" component={Esqueceu} />
+                    <Route path="/deletar" component={Deletar} />
                 </Switch>
             </div>
         </Router>
