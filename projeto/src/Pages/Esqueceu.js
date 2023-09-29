@@ -26,7 +26,7 @@ class ForgotPasswordForm extends Component {
         <div className="login-form">
           <div className="logo-container">
             <Link to="/"> 
-            <img src={logo} alt="Logo" style={{ width: '208px', height: '208px' }} />
+                    <img src={logo} alt="Logo" style={{ width: '208px', height: '208px' }} />
             </Link>
             
             <h2>Recuperar Senha</h2>
