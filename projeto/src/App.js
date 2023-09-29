@@ -10,8 +10,13 @@ import Mesas from './Pages/Mesas';
 import Jogador from './Pages/Jogador';
 import Cadastro from './Pages/Cadastro';
 import Esqueceu from './Pages/Esqueceu';
+import { createClient } from '@supabase/supabase-js'
+
+// cliente supabase
+const supabase = createClient('https://gnysjpeeumstgwzllknd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdueXNqcGVldW1zdGd3emxsa25kIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTQxNzU1OTQsImV4cCI6MjAwOTc1MTU5NH0.xGiRua3bBZT0Y_X4Rqc_vJQXMIL90ZJ_bZqPWfeN7F8')
 
 function App() {
+
     return (
         <Router>
             <div className="App">

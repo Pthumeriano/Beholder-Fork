@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import supabase from './supabase';
+
 
 function Jogador() {
-  return (
-    <div>Jogador</div>
-  )
+
+
 }
 
-export default Jogador
+export default Jogador;
