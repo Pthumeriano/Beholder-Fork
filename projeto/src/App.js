@@ -11,12 +11,9 @@ import Jogador from './Pages/Jogador';
 import Cadastro from './Pages/Cadastro';
 import Esqueceu from './Pages/Esqueceu';
 import Deletar from './Pages/Deletar';
-import { createClient } from '@supabase/supabase-js'
+import Perfil from './Pages/Perfil';
 
-// cliente supabase
-const supabase = createClient('https://gnysjpeeumstgwzllknd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdueXNqcGVldW1zdGd3emxsa25kIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTQxNzU1OTQsImV4cCI6MjAwOTc1MTU5NH0.xGiRua3bBZT0Y_X4Rqc_vJQXMIL90ZJ_bZqPWfeN7F8')
-
-function App() {
+export function App() {
 
     return (
         <Router>
@@ -35,10 +32,11 @@ function App() {
                     <Route path="/cadastro" component={Cadastro} />
                     <Route path="/esqueceu" component={Esqueceu} />
                     <Route path="/deletar" component={Deletar} />
+                    <Route path="/perfil" component={Perfil} />
+            
                 </Switch>
             </div>
         </Router>
     );
 }
-
 export default App;
