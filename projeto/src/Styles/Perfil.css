@@ -7,5 +7,17 @@
 .content-layout {
     display: flex;
     flex-direction: row;
-    flex: 1;
+    flex: 1;  /* Permite que esse contêiner cresça para preencher o espaço disponível */
+    overflow: hidden;  /* Esconde qualquer conteúdo que possa transbordar */
+}
+
+/* Supondo que você queira um tamanho fixo para a Sidebar */
+.Sidebar {
+    flex-basis: 250px; /* ou o tamanho que você quiser */
+    flex-shrink: 0;  /* Evita que ele encolha */
+}
+
+/* Supondo que você queira que UserProfile e NewsFeed cresçam e dividam o espaço restante */
+.UserProfile, .NewsFeed {
+    flex-grow: 1; /* Ambos vão crescer para ocupar o espaço disponível */
 }

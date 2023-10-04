@@ -10,12 +10,14 @@ function Perfil() {
     <div className="main-layout">
         <Header />
         <div className="content-layout">
-            <Sidebar />
-            {/*<UserProfile />*/}
-            {/*<NewsFeed/>*/}
+            <div className="Sidebar"><Sidebar /></div>
+            <div className="UserProfile"><UserProfile /></div>
+            <div className="NewsFeed"><NewsFeed/></div>
         </div>
     </div>
   )
 }
 
 export default Perfil;
+
+
