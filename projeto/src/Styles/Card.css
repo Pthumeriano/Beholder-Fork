@@ -1,29 +1,46 @@
+/* Estilize o contêiner do cartão */
 .card-container {
     display: flex;
+    flex-direction: column;
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    flex-direction: column-reverse; 
-}
-
-.card-image-container {
+    max-width: 300px;
     overflow: hidden;
 }
 
-.card-image {
+/* Estilize o contêiner da imagem */
+.card-image-container {
+    position: relative;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100px;
+    overflow: hidden;
     border-radius: 10px 10px 0 0;
 }
 
+/* Estilize a imagem no contêiner da imagem */
+.card-image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform .2s;
+}
+
+/* Efeito de zoom na imagem quando passar o mouse sobre ela */
+.card-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilize o contêiner de conteúdo */
 .card-content {
     padding: 20px;
     text-align: center;
 }
 
+/* Estilize o título */
 .card-title {
     font-size: 18px;
     font-weight: bold;
@@ -31,6 +48,7 @@
     margin-bottom: 5px;
 }
 
+/* Estilize o autor */
 .card-author {
     font-size: 14px;
     color: gray;
@@ -38,11 +56,13 @@
     margin-bottom: 10px;
 }
 
+/* Estilize a descrição */
 .card-description {
     text-align: left;
     margin: 0;
 }
 
+/* Estilize a classificação */
 .card-rating {
     display: flex;
     justify-content: center;
