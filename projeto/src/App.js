@@ -12,6 +12,7 @@ import Cadastro from './Pages/Cadastro';
 import Esqueceu from './Pages/Esqueceu';
 import Deletar from './Pages/Deletar';
 import Perfil from './Pages/Perfil';
+import Feedpage from './Pages/Feedpage';
 
 export function App() {
 
@@ -33,6 +34,8 @@ export function App() {
                     <Route path="/esqueceu" component={Esqueceu} />
                     <Route path="/deletar" component={Deletar} />
                     <Route path="/perfil" component={Perfil} />
+                    <Route path="/feedpage" component={Feedpage} />
+
             
                 </Switch>
             </div>
