@@ -1,5 +1,5 @@
 import React from 'react';
-import './Feed.css';
+import '../Styles/Feed.css';
 import { FaCamera, FaSmile } from 'react-icons/fa'; 
 
 const Feed = ({ posts }) => {
