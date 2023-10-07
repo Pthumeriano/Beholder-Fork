@@ -4,7 +4,7 @@
     align-items: stretch;
     padding: 20px;
     background-color: #f9f9f9;
-    width: 100%;
+    width: 850px;
 }
 
 .post-bar {
@@ -78,3 +78,4 @@
 .post-button:hover {
     background-color: #8B0000;  /* Uma sombra mais escura ao pairar */
 }
+

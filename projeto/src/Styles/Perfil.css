@@ -1,11 +1,11 @@
-/* Estilos para o layout principal */
+
 .main-layout {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-/* Estilos para o body ou um contêiner que englobe todos os componentes */
+
 body {
     overflow-x: auto;
 }
@@ -16,18 +16,18 @@ body {
     overflow-x: hidden;
 }
 
-/* Supondo que você queira um tamanho fixo para a Sidebar */
+
 .Sidebar {
     flex-basis: 250px;
     flex-shrink: 0;
 }
 
-/* Estilos para UserProfile e NewsFeed */
+
 .UserProfile, .NewsFeed {
     flex-grow: 1;
 }
 
-/* Estilos para UserProfile com uma barra de rolagem vertical quando necessário */
+
 .UserProfile {
     overflow-y: auto;
     border: 1px solid #ccc;

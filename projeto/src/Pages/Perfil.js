@@ -11,7 +11,9 @@ function Perfil() {
         <Header />
         <div className="content-layout">
             <div className="Sidebar"><Sidebar /></div>
+            <div className="divider"></div>
             <div className="UserProfile"><UserProfile /></div>
+            <div className="divider"></div>
             <div className="NewsFeed"><NewsFeed/></div>
         </div>
     </div>
