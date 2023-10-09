@@ -2,16 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding: 20px;
-    background-color: #f9f9f9;
-    width: 850px;
+    padding: none;
+    width: 700px;
 }
 
 .post-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;
+    width: 830px;
     padding: 10px 20px;
     background-color: #fff;
     border-radius: 25px;
@@ -38,11 +37,11 @@
     padding: 5px 10px;
     border: none;
     border-radius: 25px;
-    background-color: transparent;  /* Fundo transparente */
+    background-color: transparent;  
     outline: none;
-    font-size: 18px;  /* Ajuste o tamanho da fonte se necessário */
-    font-weight: 500;  /* A fonte parece um pouco mais espessa */
-    color: #333;  /* Cor de texto cinza escuro */
+    font-size: 18px;  
+    font-weight: 500;  
+    color: #333;  
     box-sizing: border-box;
     width: 100%;
     margin-right: 10px;
@@ -53,14 +52,14 @@
     justify-content: space-between;
     align-items: center;
     width: 50px;
-    margin-right: 15px;  /* Ajustar a margem entre os ícones e o botão */
+    margin-right: 15px;  
 }
 
 .icon-camera, .icon-smile {
-    color: #8B0000;  /* A cor vermelha para os ícones */
-    font-size: 24px;  /* Tamanho ajustado dos ícones */
+    color: #8B0000;  
+    font-size: 24px;  
     cursor: pointer;
-    margin-right: 10px;  /* Espaço entre ícones */
+    margin-right: 10px;  
 }
 
 .post-button {
@@ -71,11 +70,11 @@
     border-radius: 25px;
     cursor: pointer;
     outline: none;
-    font-weight: 500;  /* A fonte parece um pouco mais espessa */
-    font-size: 18px;  /* Ajuste o tamanho da fonte do botão */
+    font-weight: 500;  
+    font-size: 18px;  
 }
 
 .post-button:hover {
-    background-color: #8B0000;  /* Uma sombra mais escura ao pairar */
+    background-color: #8B0000;  
 }
 
