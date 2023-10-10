@@ -16,6 +16,7 @@
     border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    margin-bottom: 30px;
 }
 
 .user-avatar {
@@ -37,11 +38,11 @@
     padding: 5px 10px;
     border: none;
     border-radius: 25px;
-    background-color: transparent;  
+    background-color: transparent;
     outline: none;
-    font-size: 18px;  
-    font-weight: 500;  
-    color: #333;  
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
     box-sizing: border-box;
     width: 100%;
     margin-right: 10px;
@@ -52,14 +53,14 @@
     justify-content: space-between;
     align-items: center;
     width: 50px;
-    margin-right: 15px;  
+    margin-right: 15px;
 }
 
 .icon-camera, .icon-smile {
-    color: #8B0000;  
-    font-size: 24px;  
+    color: #8B0000;
+    font-size: 24px;
     cursor: pointer;
-    margin-right: 10px;  
+    margin-right: 10px;
 }
 
 .post-button {
@@ -70,11 +71,81 @@
     border-radius: 25px;
     cursor: pointer;
     outline: none;
-    font-weight: 500;  
-    font-size: 18px;  
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .post-button:hover {
-    background-color: #8B0000;  
+    background-color: #8B0000;
 }
 
+/* Estilos do componente Post */
+
+.post-container {
+    width: 830px;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.author-info { 
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    align-items: center;
+}
+
+.post-header strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.post-header span {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+.post-image {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.post-actions button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #555;
+}
+
+.post-actions button:hover {
+    color: #000;
+}
+
+.post-actions button:active {
+    color: #000;
+}
+
+.post-actions button .FaRegComment,
+.post-actions button .FiShare2,
+.post-actions button .FaRegHeart {
+    margin-right: 5px;
+}

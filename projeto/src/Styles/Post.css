@@ -1,0 +1,74 @@
+.post-container {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 830px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.author-avatar {
+    width: 60px; /* Aumentando o tamanho do avatar */
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.post-header-info {
+    display: flex;
+    flex-direction: column; /* Alinhar o nome e a hora verticalmente */
+}
+
+.post-header strong {
+    font-size: 16px;
+    margin-bottom: 2px; /* Espaço entre o nome e a hora */
+}
+
+.post-header span {
+    font-size: 14px;
+    color: #777;
+}
+
+.post-image {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.post-actions button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #555;
+}
+
+.post-actions button:hover {
+    color: #000;
+}
+
+.post-actions button:active {
+    color: #000;
+}
+
+/* Estilize os ícones se necessário */
+.post-actions button .FaRegComment,
+.post-actions button .FiShare2,
+.post-actions button .FaRegHeart {
+    margin-right: 5px;
+}
