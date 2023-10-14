@@ -13,8 +13,8 @@ import Esqueceu from './Pages/Esqueceu';
 import Deletar from './Pages/Deletar';
 import Perfil from './Pages/Perfil';
 import Feedpage from './Pages/Feedpage';
-import Mencoes from './Pages/Mencoes';
-import Noti from './Pages/Notificacoes';
+import Noti from './Pages/Notificacao';
+
 
 
 export function App() {
@@ -38,9 +38,8 @@ export function App() {
                     <Route path="/deletar" component={Deletar} />
                     <Route path="/perfil" component={Perfil} />
                     <Route path="/feedpage" component={Feedpage} />
-                    <Route path="/mencoes" component={Mencoes} />
                     <Route path="/noti" component={Noti} />
-
+                    
             
                 </Switch>
             </div>

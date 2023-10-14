@@ -187,3 +187,16 @@
 .post-actions button .FaRegHeart {
     margin-right: 5px;
 }
+
+/* Aba não ativa */
+.tab:not(.active) {
+    color: #aaa;  /* Cor mais opaca */
+    border-bottom: 2px solid transparent;  /* Sem borda inferior destacada */
+}
+
+/* Aba ativa */
+.tab.active {
+    color: #8B0000;  /* Cor destacada */
+    border-bottom: 2px solid #8B0000;  /* Borda inferior destacada */
+}
+
