@@ -13,12 +13,15 @@ import Esqueceu from './Pages/Esqueceu';
 import Deletar from './Pages/Deletar';
 import Perfil from './Pages/Perfil';
 import Feedpage from './Pages/Feedpage';
+import Mencoes from './Pages/Mencoes';
+import Noti from './Pages/Notificacoes';
+
 
 export function App() {
 
     return (
         <Router>
-            <div className="App">
+            <div className="App">   
                 <Switch>
                     <Route exact path="/">
                         <Navbar />
@@ -35,6 +38,8 @@ export function App() {
                     <Route path="/deletar" component={Deletar} />
                     <Route path="/perfil" component={Perfil} />
                     <Route path="/feedpage" component={Feedpage} />
+                    <Route path="/mencoes" component={Mencoes} />
+                    <Route path="/noti" component={Noti} />
 
             
                 </Switch>

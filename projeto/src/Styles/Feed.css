@@ -6,6 +6,44 @@
     width: 700px;
 }
 
+/* Estilos para o cabeçalho de feed */
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #ddd; 
+}
+
+.tab {
+    flex: 1; 
+    text-align: center; 
+    padding: 10px;
+    font-weight: 500;
+    color: #aaa;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.tab:hover {
+    color: #333;
+}
+
+.tab.active {
+    color: #333;
+}
+
+.tab:nth-child(1) {
+    border-bottom: none; 
+}
+
+.tab:nth-child(2) {
+    color: #8B0000;
+    border-bottom: 3px solid #8B0000;
+}
+
+
 .post-bar {
     display: flex;
     flex-direction: row;
