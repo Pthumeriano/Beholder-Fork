@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaHome, FaSearch, FaBell, FaEnvelope, FaUser } from 'react-icons/fa';
 import '../Styles/Sidebar.css';
 
 function Sidebar() {
     return (
         <div className="sidebar">
-            <div className="sidebar-item"><FaHome /> Página Inicial</div>
+            <Link to="/feedpage" className="sidebar-item"><FaHome /> Página Inicial</Link>
             <div className="sidebar-item"><FaSearch /> Aventuras</div>
-            <div className="sidebar-item"><FaBell /> Notificações</div>
+            <Link to="/noti" className="sidebar-item"><FaBell /> Notificações</Link>
             <div className="sidebar-item"><FaEnvelope /> Mensagens</div>
-            <div className="sidebar-item"><FaUser /> Perfil</div>
+            <Link to="/perfil" className="sidebar-item"><FaUser /> Perfil</Link>
             <button className="sidebar-button">Postar</button>
         </div>
     )
