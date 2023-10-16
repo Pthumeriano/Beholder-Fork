@@ -1,9 +1,8 @@
+// MencoesP.js
 import React, { useState } from 'react';
 import '../Styles/Feed.css';
-
 import Post from '../components/Post';
 import NotificationsScreen from './NotificationsScreen';
-
 import imagem2 from '../img/09.jpg';
 import Chu2 from '../img/chuu2.jpg';
 
@@ -19,19 +18,19 @@ const examplePosts = [
 ];
 
 const MencoesP = () => {
-  const [activeTab, setActiveTab] = useState("notificacao"); // Assumindo que a tela padrão seja "notificacao"
+  const [activeTab, setActiveTab] = useState("notificacao"); 
 
   return (
     <div className="posts-container">
       <div className="feed-header">
         <div
-          className={`tab ${activeTab === "notificacao" ? "active" : ""}`}
+          className={`tab ${activeTab === "notificacao" ? "active clickable" : "clickable"}`}
           onClick={() => setActiveTab("notificacao")}
         >
           Notificações
         </div>
         <div
-          className={`tab ${activeTab === "mencao" ? "active" : ""}`}
+          className={`tab ${activeTab === "mencao" ? "active clickable" : "clickable"}`}
           onClick={() => setActiveTab("mencao")}
         >
           Menções

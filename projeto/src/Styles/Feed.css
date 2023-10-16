@@ -1,50 +1,59 @@
-.feed-container {
+.clickable {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .feed-container {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     padding: none;
     width: 700px;
-}
-
-/* Estilos para o cabeçalho de feed */
-.feed-header {
+  }
+  
+  .feed-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: #fff;
-    border-bottom: 2px solid #ddd; 
-}
-
-.tab {
-    flex: 1; 
-    text-align: center; 
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .tab {
+    flex: 1;
+    text-align: center;
     padding: 10px;
     font-weight: 500;
     color: #aaa;
     border-bottom: 3px solid transparent;
     transition: color 0.3s, border-color 0.3s;
-}
-
-.tab:hover {
+  }
+  
+  .tab:hover {
     color: #333;
-}
-
-.tab.active {
+  }
+  
+  .tab.active {
     color: #333;
-}
-
-.tab:nth-child(1) {
-    border-bottom: none; 
-}
-
-.tab:nth-child(2) {
+  }
+  
+  .tab.active.clickable,
+  .tab.clickable:hover {
+    color: #8B0000;
+    cursor: pointer;
+  }
+  
+  .tab:nth-child(1) {
+    border-bottom: none;
+  }
+  
+  .tab:nth-child(2) {
     color: #8B0000;
     border-bottom: 3px solid #8B0000;
-}
-
-
-.post-bar {
+  }
+  
+  .post-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -55,23 +64,23 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     margin-bottom: 30px;
-}
-
-.user-avatar {
+  }
+  
+  .user-avatar {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 15px;
-}
-
-.post-input-container {
+  }
+  
+  .post-input-container {
     display: flex;
     flex: 1;
     align-items: center;
-}
-
-.post-input {
+  }
+  
+  .post-input {
     flex: 1;
     padding: 5px 10px;
     border: none;
@@ -84,24 +93,24 @@
     box-sizing: border-box;
     width: 100%;
     margin-right: 10px;
-}
-
-.post-icons {
+  }
+  
+  .post-icons {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 50px;
     margin-right: 15px;
-}
-
-.icon-camera, .icon-smile {
+  }
+  
+  .icon-camera, .icon-smile {
     color: #8B0000;
     font-size: 24px;
     cursor: pointer;
     margin-right: 10px;
-}
-
-.post-button {
+  }
+  
+  .post-button {
     padding: 10px 25px;
     background-color: #8B0000;
     color: #fff;
@@ -111,15 +120,13 @@
     outline: none;
     font-weight: 500;
     font-size: 18px;
-}
-
-.post-button:hover {
+  }
+  
+  .post-button:hover {
     background-color: #8B0000;
-}
-
-/* Estilos do componente Post */
-
-.post-container {
+  }
+  
+  .post-container {
     width: 830px;
     border: 1px solid #e0e0e0;
     padding: 15px;
@@ -127,76 +134,82 @@
     border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-}
-
-.post-header {
+  }
+  
+  .post-container .notification-text,
+  .post-container .mention-text {
+    color: #8B0000;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .post-header {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
-
-.author-info { 
+  }
+  
+  .author-info {
     display: flex;
     flex-direction: row;
     margin-left: 10px;
     align-items: center;
-}
-
-.post-header strong {
+  }
+  
+  .post-header strong {
     font-weight: bold;
     margin-right: 5px;
-}
-
-.post-header span {
+  }
+  
+  .post-header span {
     font-size: 14px;
     color: #777;
     margin: 0;
-}
-
-.post-image {
+  }
+  
+  .post-image {
     max-width: 100%;
     margin-top: 10px;
     border-radius: 5px;
-}
-
-.post-actions {
+  }
+  
+  .post-actions {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-}
-
-.post-actions button {
+  }
+  
+  .post-actions button {
     background: none;
     border: none;
     font-size: 14px;
     display: flex;
     align-items: center;
     color: #555;
-}
-
-.post-actions button:hover {
+  }
+  
+  .post-actions button:hover {
     color: #000;
-}
-
-.post-actions button:active {
+  }
+  
+  .post-actions button:active {
     color: #000;
-}
-
-.post-actions button .FaRegComment,
-.post-actions button .FiShare2,
-.post-actions button .FaRegHeart {
+  }
+  
+  .post-actions button .FaRegComment,
+  .post-actions button .FiShare2,
+  .post-actions button .FaRegHeart {
     margin-right: 5px;
-}
-
-/* Aba não ativa */
-.tab:not(.active) {
-    color: #aaa;  /* Cor mais opaca */
-    border-bottom: 2px solid transparent;  /* Sem borda inferior destacada */
-}
-
-/* Aba ativa */
-.tab.active {
-    color: #8B0000;  /* Cor destacada */
-    border-bottom: 2px solid #8B0000;  /* Borda inferior destacada */
-}
-
+  }
+  
+  .tab:not(.active) {
+    color: #aaa;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tab.active {
+    color: #8B0000;
+    border-bottom: 2px solid #8B0000;
+  }
+  
+  
