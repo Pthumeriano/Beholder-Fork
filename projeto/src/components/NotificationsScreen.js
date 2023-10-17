@@ -1,4 +1,3 @@
-// NotificationsScreen.js
 
 import React from 'react';
 import '../Styles/NotificationsScreen.css';
