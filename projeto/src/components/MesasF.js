@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/Mesas.css';
+import { FaChevronDown } from 'react-icons/fa';
 
 const MesasF = () => {
   const [activeTab, setActiveTab] = useState("mesas");
@@ -47,11 +48,10 @@ const MesasF = () => {
           {['tema1', 'tema2', 'horario', 'valores'].map(filter => (
             <div className="dropdown-container" key={filter}>
               <button className="dropdown-btn clickable" onClick={() => toggleDropdown(filter)}>
-                {selectedFilter[filter]} ▼
+                {selectedFilter[filter]} <FaChevronDown />
               </button>
               {dropdownVisible[filter] && (
                 <div className="dropdown-content">
-                  {/* Aqui você pode ajustar as opções de cada filtro conforme necessário */}
                   {['Opção 1', 'Opção 2', 'Opção 3'].map(option => (
                     <div key={option} onClick={() => selectOption(filter, option)} className="clickable">
                       {option}
