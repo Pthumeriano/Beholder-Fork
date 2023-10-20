@@ -3,7 +3,7 @@ import { FaStar, FaRegStar } from 'react-icons/fa';
 
 function Card({ title, description, author, rating, imageSrc }) {
     return (
-        <div className="card-container">
+        <div className="feedcard-container">
             <div className="card-image-container">
                 <img src={imageSrc} alt={title} className="card-image" />
             </div>

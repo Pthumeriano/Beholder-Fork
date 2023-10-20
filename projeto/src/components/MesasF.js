@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../Styles/Mesas.css';
 import { FaChevronDown } from 'react-icons/fa';
+import RPGTableCard from '../components/RPGTableCard'; 
+
+import I1 from "../img/05.jpg";
 
 const MesasF = () => {
   const [activeTab, setActiveTab] = useState("mesas");
@@ -26,6 +29,17 @@ const MesasF = () => {
     toggleDropdown(filter);
   };
 
+  const tableDataMock = {
+    id: "123",
+    imagePath: I1,
+    title: "Título da Mesa",
+    players: "4",
+    dungeonMaster: "Nome do Mestre",
+    tema: "Fantasia",
+    horario: "19h - 23h",
+    valor: "R$ 50"
+  };
+
   return (
     <div className="posts-container">
       <div className="feed-header">
@@ -44,26 +58,30 @@ const MesasF = () => {
       </div>
 
       {activeTab === "mesas" && (
-        <div className="filters-container">
-          {['tema1', 'tema2', 'horario', 'valores'].map(filter => (
-            <div className="dropdown-container" key={filter}>
-              <button className="dropdown-btn clickable" onClick={() => toggleDropdown(filter)}>
-                {selectedFilter[filter]} <FaChevronDown />
-              </button>
-              {dropdownVisible[filter] && (
-                <div className="dropdown-content">
-                  {['Opção 1', 'Opção 2', 'Opção 3'].map(option => (
-                    <div key={option} onClick={() => selectOption(filter, option)} className="clickable">
-                      {option}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="filters-container">
+            {['tema1', 'tema2', 'horario', 'valores'].map(filter => (
+              <div className="dropdown-container" key={filter}>
+                <button className="dropdown-btn clickable" onClick={() => toggleDropdown(filter)}>
+                  {selectedFilter[filter]} <FaChevronDown />
+                </button>
+                {dropdownVisible[filter] && (
+                  <div className="dropdown-content">
+                    {['Opção 1', 'Opção 2', 'Opção 3'].map(option => (
+                      <div key={option} onClick={() => selectOption(filter, option)} className="clickable">
+                        {option}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <RPGTableCard tableData={tableDataMock} />
+          {/* Se você tiver uma lista de mesas, pode usar o .map() para renderizar vários RPGTableCards */}
+        </>
       )}
-      {/* Renderize a lista de mesas ou qualquer conteúdo relacionado a mesas aqui */}
     </div>
   );
 };
