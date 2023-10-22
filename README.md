@@ -14,6 +14,9 @@ npm i
 
 cd projeto
 
+//se por acaso não tiver criado as dependêcias do react no projeto usa esse comando
+npx create-react-app my-app
+
 npm start
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
