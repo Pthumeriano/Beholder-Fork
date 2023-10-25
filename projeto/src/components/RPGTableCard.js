@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/CardRPG.css';
 
 function RPGTableCard({ tableData }) {
   const joinTable = (tableId) => {
