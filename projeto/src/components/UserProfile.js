@@ -1,12 +1,14 @@
-import React from 'react';
 import coverPic from '../img/06.png';  
 import profilePic from '../img/chuu2.jpg';  
 import globeIcon from '../img/globe.png';  
 import linkIcon from '../img/link.png';  
 import '../Styles/UserProfile.css';
+import React, { useState } from 'react';
 
 function UserProfile() {
+  const [activeTab, setActiveTab] = useState("UserProfile");
   return (
+    
     <div className="perfil-container">
       <img src={coverPic} alt="Foto de Capa" className="cover-pic"/>
       <img src={profilePic} alt="Foto de Perfil" className="profile-pic"/>
@@ -40,7 +42,74 @@ function UserProfile() {
         </div>
       </div>
     </div>
+    <div className="posts-container">
+      <div className="feed-header">
+        <div
+          className={`tab ${activeTab === "posts" ? "active clickable" : "clickable"}`}
+          onClick={() => setActiveTab("posts")}
+        >
+          Posts
+        </div>
+
+        <div
+          className={`tab ${activeTab === "respostas" ? "active clickable" : "clickable"}`}
+          onClick={() => setActiveTab("respostas")}
+        >
+
+          Respostas
+
+         </div>
+
+        <div
+          className={`tab ${activeTab === "mesas" ? "active clickable" : "clickable"}`}
+          onClick={() => setActiveTab("mesas")}
+        >
+          Mesas
+         </div>
+
+         <div
+          className={`tab ${activeTab === "curtidas" ? "active clickable" : "clickable"}`}
+          onClick={() => setActiveTab("curtidas")}
+        >
+          Curtidas
+         </div>
+
+        </div>
       </div>
+
+      {activeTab === 'posts' && (
+        <div>
+          aaaa
+        </div>
+      )
+        
+      }
+
+      {activeTab === 'respostas' && (
+        <div>
+          bbbb
+        </div>
+      )
+        
+      }
+
+      {activeTab === 'mesas' && (
+        <div>
+          cccc
+        </div>
+      )
+        
+      }
+      
+      {activeTab === 'curtidas' && (
+        <div>
+          dddd
+        </div>
+      )
+        
+      }
+    </div>
+    
   );
 }
 
