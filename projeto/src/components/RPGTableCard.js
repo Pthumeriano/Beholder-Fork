@@ -1,5 +1,6 @@
 import React from 'react';
-import '../Styles/CardRPG.css';
+import { FaStar, FaRegStar, FaUser, FaBookOpen, FaClock, FaCalendar, FaDollarSign } from 'react-icons/fa';
+import '../Styles/CardRPG.css'
 
 function RPGTableCard({ tableData }) {
   const joinTable = (tableId) => {
@@ -14,16 +15,21 @@ function RPGTableCard({ tableData }) {
           alt={tableData.title}
           className="table-image"
         />
+        <div className="stars">
+          {[...Array(5)].map((_, i) => i < tableData.rating ? <FaStar key={i} /> : <FaRegStar key={i} />)}
+        </div>
       </div>
       <div className="table-details">
         <h3>{tableData.title}</h3>
-        <p>Jogadores: {tableData.players}</p>
-        <p>Mestre: {tableData.dungeonMaster}</p>
-        <p>Tema: {tableData.tema}</p>
-        <p>Horario: {tableData.horario}</p>
-        <p>Valor: {tableData.valor}</p>
+        <span className="tag">{tableData.tag}</span>
+        <p><FaUser /> Mestre: {tableData.dungeonMaster}</p>
+        <p><FaBookOpen /> Vagas: {tableData.vagas}</p>
+        <p><FaClock /> Duração: {tableData.duration}</p>
+        <p><FaCalendar /> Horário: {tableData.horario}</p>
+        <p><FaDollarSign /> Valor: {tableData.valor}</p>
+        <p>{tableData.description}</p>
       </div>
-      <button onClick={() => joinTable(tableData.id)}>Enviar pedido</button>
+      <button className="button" onClick={() => joinTable(tableData.id)}>Enviar Pedido</button>
     </div>
   );
 }

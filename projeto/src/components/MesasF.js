@@ -66,7 +66,7 @@ const MesasF = () => {
                   {selectedFilter[filter]} <FaChevronDown />
                 </button>
                 {dropdownVisible[filter] && (
-                  <div className="dropdown-content">
+                  <div className="dropdown-content" style={{ position: 'absolute', top: '100%', left: '0' }}>
                     {['Opção 1', 'Opção 2', 'Opção 3'].map(option => (
                       <div key={option} onClick={() => selectOption(filter, option)} className="clickable">
                         {option}
@@ -78,8 +78,9 @@ const MesasF = () => {
             ))}
           </div>
 
+         
           <RPGTableCard tableData={tableDataMock} />
-          {/* Se você tiver uma lista de mesas, pode usar o .map() para renderizar vários RPGTableCards */}
+          
         </>
       )}
     </div>

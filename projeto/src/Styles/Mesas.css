@@ -179,3 +179,7 @@
 .rpg-table-card-button:hover {
     background-color: #6A0000;
 }
+
+.cardVisible {
+    margin-top: 100px; 
+  }
