@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import '../Styles/Mesas.css';
 import { FaChevronDown } from 'react-icons/fa';
-import RPGTableCard from '../components/RPGTableCard'; 
+import RPGTableCard from '../components/RPGTableCard';
+import JogadoresF from '../components/JogadoresF'; 
 
 import I1 from "../img/05.jpg";
-
 
 const MesasF = () => {
   const [activeTab, setActiveTab] = useState("mesas");
@@ -79,11 +79,11 @@ const MesasF = () => {
             ))}
           </div>
 
-         
           <RPGTableCard tableData={tableDataMock} />
-          
         </>
       )}
+
+      {activeTab === "jogadores" && <JogadoresF />}
     </div>
   );
 };
