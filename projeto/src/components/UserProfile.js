@@ -3,10 +3,64 @@ import profilePic from '../img/chuu2.jpg';
 import globeIcon from '../img/globe.png';  
 import linkIcon from '../img/link.png';  
 import '../Styles/UserProfile.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import * as JWT from 'jwt-decode';
+
+
+// Função para obter o valor de um cookie pelo nome
+function getCookieValue(nome){
+  const cookies = document.cookie.split('; ');
+  for (const cookie of cookies) {
+    const [name, value] = cookie.split('=');
+    if (name === nome) {
+      return value;
+    }
+  }
+  return null; // Retorna null se o cookie não for encontrado
+};
 
 function UserProfile() {
+
   const [activeTab, setActiveTab] = useState("UserProfile");
+  const [userData, setUserData] = useState({
+    id: '',
+    nome: '',
+    email: '',
+    senha: '',
+    datanascimento: null,
+    telefone: null,
+    descricao: null,
+    xp: 0,
+    criado_em: '',
+  });
+
+  useEffect(() => {
+    // Função para buscar os dados do usuário
+    const fetchUserData = async () => {
+      try {
+        
+        // Obtenha o token do cookie BeholderToken
+        const token = getCookieValue('BeholderToken');
+  
+        // Se o token existir, decodifique-o para obter o userId
+        if (token) {
+          const decodedToken = JWT.jwtDecode(token);
+          const userId = decodedToken.userId;
+
+          // Faça a solicitação para obter os dados do usuário usando o userId
+          const response = await axios.get(`http://localhost:4200/api/usuario/${userId}`);
+          setUserData(response.data);
+        }
+      } catch (error) {
+        console.error('Erro ao obter os dados do usuário:', error);
+      }
+    };
+  
+    // Chama a função para buscar os dados do usuário
+    fetchUserData();
+  }, []);
+  
   return (
     
     <div className="perfil-container">
@@ -14,12 +68,12 @@ function UserProfile() {
       <img src={profilePic} alt="Foto de Perfil" className="profile-pic"/>
       <div className="profile-content">
         <div className="header-content">
-          <h2>Chuu do Critei</h2>
+          <h2>{userData[0].nome}</h2>
           <button className="edit-profile-button">Editar Perfil</button>
         </div>
-        <p className='user-tag'>@chullo2</p>
+        <p className='user-tag'>{`email: ${userData[0].email}`}</p>
         <p className='user-info'>
-          Sou mestra e jogadora de RPG, atualmente, mestro uma campanha de D&D chamada "Stellarium", mais informações no link fixado!
+          {userData[0].descricao || "Nenhuma descrição disponível"}
         </p>
         <div className="details">
           <div className="detail">
