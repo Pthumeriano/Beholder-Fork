@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../Styles/Entrar.css';
 import logo from '../img/logo.png'; // Importe a imagem
+import axios from 'axios';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -16,11 +17,30 @@ class LoginForm extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
-
-  handleSubmit = (e) => {
+  
+  handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para autenticar o usuário
+
+    const email = this.state.email;
+    const senha = this.state.senha;
+
+    try {
+      const response = await axios.post('http://localhost:4200/api/usuarios/login', {
+        email: email,
+        senha: senha,
+      }, {
+        withCredentials: true,
+      });
+
+      console.log('Usuário autenticado com sucesso:', response.data);
+
+      // Use history.push para redirecionar após o login
+      this.props.history.push('/feedpage');
+    } catch (error) {
+      console.error('Erro ao autenticar o usuário:', error);
+    }
   }
+  
 
   render() {
     return (
