@@ -15,6 +15,7 @@ import Perfil from './Pages/Perfil';
 import Feedpage from './Pages/Feedpage';
 import Noti from './Pages/Notificacao';
 import CriarMesa from './Pages/CriarMesa';
+import Dmesas from './Pages/Dmesas';
 
 
 export function App() {
@@ -40,6 +41,7 @@ export function App() {
                     <Route path="/feedpage" component={Feedpage} />
                     <Route path="/noti" component={Noti} />
                     <Route path="/criarmesa" component={CriarMesa} />
+                    <Route path="/dmesas" component={Dmesas} />
                     
             
                 </Switch>

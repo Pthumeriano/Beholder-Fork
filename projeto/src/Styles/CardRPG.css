@@ -7,6 +7,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     gap: 20px;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .table-image-container {
@@ -102,4 +103,31 @@
 .create-table-button:hover {
     background-color: #8B0000;
     color: #fff;
+}
+
+.jogador-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    margin-right: 780px;
+}
+
+.jogador-info {
+    flex-grow: 1;
+    padding: 0 16px;
+}
+
+.jogador-nome {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.jogador-detalhes {
+    font-size: 14px;
+    color: #666;
 }

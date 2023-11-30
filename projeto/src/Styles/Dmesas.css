@@ -1,0 +1,86 @@
+/* Dmesas.css */
+.detalhes-da-mesa {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  max-width: 800px;
+  margin: auto;
+}
+
+.sessao-header {
+  background-size: cover;
+  padding: 40px 20px;
+  text-align: left;
+  border-radius: 8px;
+  color: white;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+}
+
+.botao-participante {
+  background-color: #4CAF50; /* A cor pode ser ajustada conforme o design desejado */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.sessao-perfil {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2; /* Ou a cor do fundo conforme o design */
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.imagem-perfil {
+  width: 150px; /* Ajuste o tamanho conforme necessário */
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.info-perfil h2 {
+  margin: 0;
+  color: #000; /* Ou a cor do texto conforme o design */
+}
+
+.username {
+  color: #555; /* Ou a cor do texto conforme o design */
+  margin-bottom: 10px;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  background-color: #e0e0e0; /* Ou a cor do fundo das tags conforme o design */
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.avaliacao {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.star {
+  color: #ff9800; /* Ou a cor das estrelas conforme o design */
+  font-size: 24px;
+}
+
+.botao-avaliar {
+  background-color: #f44336; /* A cor pode ser ajustada conforme o design desejado */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}

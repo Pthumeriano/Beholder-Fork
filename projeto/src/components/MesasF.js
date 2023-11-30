@@ -3,11 +3,15 @@ import '../Styles/Mesas.css';
 import { FaChevronDown } from 'react-icons/fa';
 import RPGTableCard from '../components/RPGTableCard';
 import JogadoresF from '../components/JogadoresF'; 
+import axios from 'axios';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import I1 from "../img/05.jpg";
 
 const MesasF = () => {
   const [activeTab, setActiveTab] = useState("mesas");
+
   const [selectedFilter, setSelectedFilter] = useState({
     tema1: 'Tema 1',
     tema2: 'Tema 2',
@@ -20,6 +24,21 @@ const MesasF = () => {
     horario: false,
     valores: false
   });
+
+  const [mesas, setMesas] = useState([]); // Estado para armazenar os dados das mesas
+
+  useEffect(() => {
+    const fetchMesas = async () => {
+      try {
+        const response = await axios.get('http://localhost:4200/api/mesas');
+        setMesas(response.data); // Atualiza o estado com as mesas recebidas
+      } catch (error) {
+        console.error("Erro ao buscar dados: ", error);
+      }
+    };
+
+    fetchMesas();
+  }, []);
 
   const toggleDropdown = (filter) => {
     setDropdownVisible(prevState => ({ ...prevState, [filter]: !prevState[filter] }));
@@ -60,31 +79,37 @@ const MesasF = () => {
 
       {activeTab === "mesas" && (
         <>
-          <div className="filters-container">
-            {['tema1', 'tema2', 'horario', 'valores'].map(filter => (
-              <div className="dropdown-container" key={filter}>
-                <button className="dropdown-btn clickable" onClick={() => toggleDropdown(filter)}>
-                  {selectedFilter[filter]} <FaChevronDown />
-                </button>
-                {dropdownVisible[filter] && (
-                  <div className="dropdown-content" style={{ position: 'absolute', top: '100%', left: '0' }}>
-                    {['Opção 1', 'Opção 2', 'Opção 3'].map(option => (
-                      <div key={option} onClick={() => selectOption(filter, option)} className="clickable">
-                        {option}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          {/* ...filtros */}
 
-          <RPGTableCard tableData={tableDataMock} />
+          {mesas.map((mesa) => (
+            <RPGTableCard
+              key={mesa.id}
+              tableData={{
+                id: mesa.id,
+                title: mesa.titulo,
+                subtitle: mesa.subtitulo,
+                system: mesa.sistema,
+                description: mesa.descricao,
+                createdOn: mesa.criado_em,
+                date: mesa.data,
+                time: mesa.horario,
+                period: mesa.periodo,
+                price: mesa.preco,
+                vacancies: mesa.vagas,
+                dungeonMasterId: mesa.mestre,
+                chatId: mesa.chat
+              }}
+            />
+          ))}
         </>
       )}
 
       {activeTab === "jogadores" && <JogadoresF />}
+
+      <Link to="/criarmesa" className="button create-table-button">Criar Mesa</Link>
     </div>
+
+    
   );
 };
 
