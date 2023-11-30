@@ -1,14 +1,11 @@
 import React from 'react';
 import { FaStar, FaRegStar, FaUser, FaBookOpen, FaClock, FaCalendar, FaDollarSign } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Importe o Link do React Router
 import '../Styles/CardRPG.css';
 
 function RPGTableCard({ tableData }) {
   const joinTable = (tableId) => {
     console.log(`Você está entrando na mesa com o ID ${tableId}`);
-  };
-
-  const createTable = () => {
-    console.log('Criando uma nova mesa');
   };
 
   return (
@@ -36,7 +33,8 @@ function RPGTableCard({ tableData }) {
         </div>
         <button className="button" onClick={() => joinTable(tableData.id)}>Enviar Pedido</button>
       </div>
-      <button className="button create-table-button" onClick={createTable}>Criar Mesa</button>
+      {/* Botão "Criar Mesa" agora é um Link que leva para a rota /criarmesa */}
+      <Link to="/criarmesa" className="button create-table-button">Criar Mesa</Link>
     </>
   );
 }

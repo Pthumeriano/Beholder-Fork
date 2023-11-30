@@ -81,16 +81,22 @@
     background-color: #8B0000;
 }
 
+
 .create-table-button {
-    display: block;
-    margin: 30px auto 0 auto; 
+    margin: 30px auto 0 auto;
     background-color: transparent;
     color: #8B0000;
     border: 1px solid #8B0000;
-    border-radius: 30px;
-    padding: 10px 20px;
+    border-radius: 20px;
+    padding: 10px 20px; 
     cursor: pointer;
     font-size: 14px;
+    text-align: center; 
+    display: block;
+    width: fit-content; 
+    margin-left: auto;
+    margin-right: auto; 
+    text-decoration: none;
 }
 
 .create-table-button:hover {

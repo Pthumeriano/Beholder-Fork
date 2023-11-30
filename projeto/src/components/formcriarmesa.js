@@ -5,42 +5,43 @@ function FormCriarMesa() {
   const [mesaInfo, setMesaInfo] = useState({
     nomeMesa: '',
     descricaoMesa: '',
-    dia: '', // Inicialmente, nenhum valor selecionado
+    tema: '',
+    dia: '',
     horario: '',
     vagas: '',
     custoSessao: '',
-    imagemMesa: null, // Inicialmente, nenhuma imagem selecionada
+    imagemMesa: null,
   });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setMesaInfo({
-      ...mesaInfo,
+    setMesaInfo(prevState => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
   };
 
   const handleImageUpload = (event) => {
     const imageFile = event.target.files[0];
-    setMesaInfo({
-      ...mesaInfo,
+    setMesaInfo(prevState => ({
+      ...prevState,
       imagemMesa: imageFile,
-    });
+    }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aqui você pode processar os dados do formulário, incluindo a imagem, como enviá-los para o servidor ou executar alguma ação.
     console.log('Informações da Mesa de RPG:', mesaInfo);
   };
 
   return (
-    <div>
+    <div className="form-criar-mesa">
       <h2>Criar Mesa de RPG</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Nome da Mesa:</label>
+          <label htmlFor="nomeMesa">Nome da Mesa:</label>
           <input
+            id="nomeMesa"
             type="text"
             name="nomeMesa"
             value={mesaInfo.nomeMesa}
@@ -48,16 +49,18 @@ function FormCriarMesa() {
           />
         </div>
         <div>
-          <label>Descrição da Mesa:</label>
+          <label htmlFor="descricaoMesa">Descrição da Mesa:</label>
           <textarea
+            id="descricaoMesa"
             name="descricaoMesa"
             value={mesaInfo.descricaoMesa}
             onChange={handleInputChange}
           />
         </div>
         <div>
-          <label>Tema:</label>
+          <label htmlFor="tema">Tema:</label>
           <select
+            id="tema"
             name="tema"
             value={mesaInfo.tema}
             onChange={handleInputChange}
@@ -66,12 +69,12 @@ function FormCriarMesa() {
             <option value="fantasia">Fantasia</option>
             <option value="ficcao">Ficção Científica</option>
             <option value="historico">Histórico</option>
-            {/* Adicione mais opções de tema conforme necessário */}
           </select>
         </div>
         <div>
-          <label>Dia:</label>
+          <label htmlFor="dia">Dia:</label>
           <select
+            id="dia"
             name="dia"
             value={mesaInfo.dia}
             onChange={handleInputChange}
@@ -80,12 +83,12 @@ function FormCriarMesa() {
             <option value="segunda">Segunda-feira</option>
             <option value="terca">Terça-feira</option>
             <option value="quarta">Quarta-feira</option>
-            {/* Adicione mais opções de dia conforme necessário */}
           </select>
         </div>
         <div>
-          <label>Horário:</label>
+          <label htmlFor="horario">Horário:</label>
           <input
+            id="horario"
             type="text"
             name="horario"
             value={mesaInfo.horario}
@@ -93,8 +96,9 @@ function FormCriarMesa() {
           />
         </div>
         <div>
-          <label>Vagas:</label>
+          <label htmlFor="vagas">Vagas:</label>
           <input
+            id="vagas"
             type="text"
             name="vagas"
             value={mesaInfo.vagas}
@@ -102,8 +106,9 @@ function FormCriarMesa() {
           />
         </div>
         <div>
-          <label>Custo por Sessão:</label>
+          <label htmlFor="custoSessao">Custo por Sessão:</label>
           <input
+            id="custoSessao"
             type="text"
             name="custoSessao"
             value={mesaInfo.custoSessao}
@@ -111,8 +116,9 @@ function FormCriarMesa() {
           />
         </div>
         <div>
-          <label>Imagem da Mesa:</label>
+          <label htmlFor="imagemMesa">Imagem da Mesa:</label>
           <input
+            id="imagemMesa"
             type="file"
             accept="image/*"
             name="imagemMesa"
@@ -126,5 +132,3 @@ function FormCriarMesa() {
 }
 
 export default FormCriarMesa;
-
-
