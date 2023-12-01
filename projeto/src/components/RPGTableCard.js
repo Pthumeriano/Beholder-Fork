@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import '../Styles/CardRPG.css';
 
 function RPGTableCard({ tableData }) {
-  const joinTable = (tableId) => {
-    console.log(`Você está entrando na mesa com o ID ${tableId}`);
-  };
-
   // Convertendo horário e data para um formato mais legível
   const formattedTime = tableData.time ? tableData.time.substring(0, 5) : '';
   const formattedDate = new Date(tableData.date).toLocaleDateString();
@@ -37,9 +33,8 @@ function RPGTableCard({ tableData }) {
           <p><FaDollarSign /> Valor: R$ {tableData.price}</p>
           <p>Descrição: {tableData.description}</p>
         </div>
-        <button className="button" onClick={() => joinTable(tableData.id)}>Entrar</button>
+        <Link to={`/dmesas/${tableData.id}`} className="button">Ver mesa</Link>
       </div>
-      
     </>
   );
 }

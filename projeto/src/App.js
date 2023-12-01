@@ -41,7 +41,7 @@ export function App() {
                     <Route path="/feedpage" component={Feedpage} />
                     <Route path="/noti" component={Noti} />
                     <Route path="/criarmesa" component={CriarMesa} />
-                    <Route path="/dmesas" component={Dmesas} />
+                    <Route path="/dmesas/:id" component={Dmesas} />
                     
             
                 </Switch>
