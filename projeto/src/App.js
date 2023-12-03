@@ -16,6 +16,8 @@ import Feedpage from "./Pages/Feedpage";
 import Noti from "./Pages/Notificacao";
 import CriarMesa from "./Pages/CriarMesa";
 import Dmesas from "./Pages/Dmesas";
+import Chat from "./Pages/Chat";
+
 import { SearchContextProvider } from "./contexts/SearchContext";
 
 export function App() {
@@ -42,6 +44,7 @@ export function App() {
             <Route path="/noti" component={Noti} />
             <Route path="/criarmesa" component={CriarMesa} />
             <Route path="/dmesas/:id" component={Dmesas} />
+            <Route path="/chat" component={Chat} />
           </Switch>
         </div>
       </Router>

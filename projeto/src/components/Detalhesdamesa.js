@@ -58,11 +58,29 @@ function Detalhesdamesa() {
           <p>Preço: {mesa[0].preco > 0 ? "R$ " + mesa[0].preco : "Grátis"}</p>
 
           <button className="botao-participante">Entrar</button>
+
+          <div className="sessao-perfil">
+            <div className="info-perfil">
+              <h2>Amanda Amaral</h2>
+              <p className="username">@amandx</p>
+              <div className="tags">
+                <span className="tag">Medieval</span>
+                <span className="tag">Mistério</span>
+              </div>
+              <div className="avaliacao">
+                <MdStar className="star" />
+                <MdStar className="star" />
+                <MdStar className="star" />
+                <MdStarHalf className="star" />
+                <MdStarBorder className="star" />
+              </div>
+              <button className="botao-avaliar">Avaliar</button>
+            </div>
+          </div>
         </div>
       ) : (
         <p>Carregando detalhes da mesa...</p>
       )}
-      {/* Renderize outros detalhes da mesa aqui */}
     </div>
   );
 }

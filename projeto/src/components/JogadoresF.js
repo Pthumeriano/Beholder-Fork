@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/CardRPG.css";
 import { useSearch } from "../contexts/SearchContext";
+import JogadorCard from "./JogadorCard";
+import { listarTemasFavoritos } from "../services/api/usuario";
 
 const JogadoresList = () => {
   const [jogadores, setJogadores] = useState([]);
+  const [temasDosJogadores, setTemasDosJogadores] = useState({});
 
   useEffect(() => {
     const fetchJogadores = async () => {
@@ -16,28 +19,34 @@ const JogadoresList = () => {
       }
     };
 
+    const fetchTemasDosJogadores = async () => {
+      try {
+        setTemasDosJogadores((await listarTemasFavoritos()).data);
+      } catch (error) {
+        console.error("Erro ao buscar temas dos jogadores: ", error);
+      }
+    };
+
     fetchJogadores();
+    fetchTemasDosJogadores();
   }, []);
 
   const { search } = useSearch();
 
   return (
     <div>
-      {jogadores
-        .filter((jogador) =>
-          jogador.nome.toLowerCase().includes(search.toLowerCase())
-        )
-        .map((jogador) => (
-          <div key={jogador.id} className="jogador-card">
-            <div className="jogador-info">
-              <h3 className="jogador-nome">{jogador.nome}</h3>
-              <p className="jogador-detalhes">XP: {jogador.xp}</p>
-              <p className="jogador-detalhes">Email: {jogador.email}</p>
-              {/* Adicione mais detalhes conforme necessário */}
-            </div>
-            {/* Pode adicionar botões ou outras ações aqui */}
-          </div>
-        ))}
+      {temasDosJogadores &&
+        jogadores
+          .filter((jogador) =>
+            jogador.nome.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((jogador) => (
+            <JogadorCard
+              nome={jogador.nome}
+              email={jogador.email}
+              temas={temasDosJogadores[jogador.id]}
+            />
+          ))}
     </div>
   );
 };
