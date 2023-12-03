@@ -8,23 +8,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import I1 from "../img/05.jpg";
+import { useSearch } from "../contexts/SearchContext";
 
 const MesasF = () => {
   const [activeTab, setActiveTab] = useState("mesas");
-
-  const [selectedFilter, setSelectedFilter] = useState({
-    tema1: "Tema 1",
-    tema2: "Tema 2",
-    horario: "Horário",
-    valores: "Valores",
-  });
-  const [dropdownVisible, setDropdownVisible] = useState({
-    tema1: false,
-    tema2: false,
-    horario: false,
-    valores: false,
-  });
-
   const [mesas, setMesas] = useState([]); // Estado para armazenar os dados das mesas
 
   useEffect(() => {
@@ -40,28 +27,7 @@ const MesasF = () => {
     fetchMesas();
   }, []);
 
-  const toggleDropdown = (filter) => {
-    setDropdownVisible((prevState) => ({
-      ...prevState,
-      [filter]: !prevState[filter],
-    }));
-  };
-
-  const selectOption = (filter, option) => {
-    setSelectedFilter((prevState) => ({ ...prevState, [filter]: option }));
-    toggleDropdown(filter);
-  };
-
-  const tableDataMock = {
-    id: "123",
-    imagePath: I1,
-    title: "Título da Mesa",
-    players: "4",
-    dungeonMaster: "Nome do Mestre",
-    tema: "Fantasia",
-    horario: "19h - 23h",
-    valor: "R$ 50",
-  };
+  const { search, setSearch } = useSearch();
 
   return (
     <div className="posts-container">
@@ -70,7 +36,10 @@ const MesasF = () => {
           className={`tab ${
             activeTab === "mesas" ? "active clickable" : "clickable"
           }`}
-          onClick={() => setActiveTab("mesas")}
+          onClick={() => {
+            setActiveTab("mesas");
+            setSearch("");
+          }}
         >
           Mesas
         </div>
@@ -78,7 +47,10 @@ const MesasF = () => {
           className={`tab ${
             activeTab === "jogadores" ? "active clickable" : "clickable"
           }`}
-          onClick={() => setActiveTab("jogadores")}
+          onClick={() => {
+            setActiveTab("jogadores");
+            setSearch("");
+          }}
         >
           Jogadores
         </div>
@@ -88,26 +60,30 @@ const MesasF = () => {
         <>
           {/* ...filtros */}
 
-          {mesas.map((mesa) => (
-            <RPGTableCard
-              key={mesa.id}
-              tableData={{
-                id: mesa.id,
-                title: mesa.titulo,
-                subtitle: mesa.subtitulo,
-                system: mesa.sistema,
-                description: mesa.descricao,
-                createdOn: mesa.criado_em,
-                date: mesa.dia,
-                time: mesa.horario,
-                period: mesa.periodo,
-                price: mesa.preco,
-                vacancies: mesa.vagas,
-                dungeonMasterId: mesa.mestre,
-                chatId: mesa.chat,
-              }}
-            />
-          ))}
+          {mesas
+            .filter((mesa) =>
+              mesa.titulo.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((mesa) => (
+              <RPGTableCard
+                key={mesa.id}
+                tableData={{
+                  id: mesa.id,
+                  title: mesa.titulo,
+                  subtitle: mesa.subtitulo,
+                  system: mesa.sistema,
+                  description: mesa.descricao,
+                  createdOn: mesa.criado_em,
+                  date: mesa.dia,
+                  time: mesa.horario,
+                  period: mesa.periodo,
+                  price: mesa.preco,
+                  vacancies: mesa.vagas,
+                  dungeonMasterId: mesa.mestre,
+                  chatId: mesa.chat,
+                }}
+              />
+            ))}
         </>
       )}
 
