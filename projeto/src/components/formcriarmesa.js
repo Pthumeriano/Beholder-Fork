@@ -60,7 +60,7 @@ function FormCriarMesa() {
           ? diaNumeroInputRef.current.value
           : diaSemanaInputRef.current.value;
       const horario = horarioInputRef.current.value;
-      const preco = precoInputRef.current.value;
+      const preco = Number(precoInputRef.current.value);
       const vagas = vagasInputRef.current.value;
 
       const mesa = await criarMesa({
@@ -229,7 +229,7 @@ function FormCriarMesa() {
             <option value="0">Gŕatis!</option>
             <option value="1">R$ 1</option>
             <option value="5">R$ 5</option>
-            <option value="10'">R$ 10</option>
+            <option value="10">R$ 10</option>
           </select>
         </div>
         <button type="submit">Criar Mesa de RPG</button>

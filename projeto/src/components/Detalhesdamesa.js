@@ -86,6 +86,7 @@ function Detalhesdamesa() {
           <img src={logodia} alt="Logo Dia" className="logo-dia" />
           <p>Período: {periodos[mesa[0].periodo]}</p>
           <p>Dia: {mesa[0].dia}</p>
+          <p>Horario: {mesa[0].horario}</p>
           <img src={logovagas} alt="Logo Vagas" className="logo-vagas" />
           <p>Vagas: {mesa[0].vagas}</p>
           <img src={logovalor} alt="Logo Valor" className="logo-valor" />
