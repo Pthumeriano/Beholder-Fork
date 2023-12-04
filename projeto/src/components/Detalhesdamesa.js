@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { MdStar, MdStarHalf, MdStarBorder } from "react-icons/md";
 import "../Styles/Dmesas.css";
 import backgroundImage from "../img/02.jpg";
 import logomestre from "../img/logomestre.png";
@@ -7,25 +6,60 @@ import logodia from "../img/logodia.png";
 import logovalor from "../img/logovalor.png";
 import logovagas from "../img/logovagas2.png";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { getUsuarioPorId, getUsuarioTemaPorId } from "../services/api/usuario";
+import { getMesa } from "../services/api/mesa";
+import JogadorCard from "./JogadorCard";
 
 function Detalhesdamesa() {
   const { id } = useParams();
   const [mesa, setMesa] = useState(null);
+  const [mestreName, setMestreName] = useState("Nenhum Tema Favorito");
+  const [temaFavoritoMestre, setTemaFavoritoMestre] = useState([]);
 
   useEffect(() => {
-    console.log("ID da URL:", id); // Adicione este log para verificar se o ID está sendo capturado corretamente
-    // Substitua 'localhost:4200/api/mesa/:id' pela URL correta da sua API com o ID dinâmico
-    axios
-      .get(`http://localhost:4200/api/mesa/${id}`)
-      .then((response) => {
-        console.log("Resposta da API:", response.data); // Adicione este log para verificar a resposta da API
-        setMesa(response.data);
-      })
-      .catch((error) => {
-        console.error("Erro na solicitação:", error); // Adicione este log para capturar erros na solicitação
-      });
+    const fetchMestreName = async (mestreId) => {
+      try {
+        const mestre = await getUsuarioPorId(mestreId);
+        return mestre.data[0].nome;
+      } catch (error) {
+        console.error("Erro ao buscar mestre: ", error);
+        return "Mestre Desconhecido";
+      }
+    };
+
+    const fetchTemaFavoritoMestre = async (mestreId) => {
+      try {
+        const temaFavorito = await getUsuarioTemaPorId(mestreId);
+        return temaFavorito || [];
+      } catch (error) {
+        console.error("Erro ao buscar tema favorito do mestre: ", error);
+        return [];
+      }
+    };
+
+    const fetchData = async () => {
+      try {
+        const response = await getMesa(id);
+        const mesaData = response.data;
+
+        console.log("Mesa data:", mesaData);
+
+        const mestreName = await fetchMestreName(mesaData[0].mestre);
+        const temaFavorito = await fetchTemaFavoritoMestre(mesaData[0].mestre);
+
+        console.log("Mestre name:", mestreName);
+        console.log("Tema favorito do mestre:", temaFavorito);
+
+        setMesa(mesaData);
+        setMestreName(mestreName);
+        setTemaFavoritoMestre(temaFavorito);
+      } catch (error) {
+        console.error("Erro na solicitação:", error);
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   const backgroundStyle = {
@@ -45,11 +79,10 @@ function Detalhesdamesa() {
     <div className="detalhes-da-mesa">
       {mesa ? (
         <div className="sessao-header" style={backgroundStyle}>
-          {/* Renderize os detalhes da mesa aqui */}
           <h1>{mesa[0].titulo}</h1>
           <p>{mesa[0].subtitulo}</p>
           <img src={logomestre} alt="Logo Mestre" className="logo-mestre" />
-          <p>Mestre: {mesa[0].mestre}</p>
+          <p>ID: {mesa[0].id}</p>
           <img src={logodia} alt="Logo Dia" className="logo-dia" />
           <p>Período: {periodos[mesa[0].periodo]}</p>
           <p>Dia: {mesa[0].dia}</p>
@@ -61,17 +94,13 @@ function Detalhesdamesa() {
             <button className="botao-participante">Entrar</button>
           </Link>
 
-          <div className="sessao-perfil">
-            <div className="info-perfil">
-              <h2>Mestre: {mesa[0].mestre}</h2>
-              <p className="username">ID: {mesa[0].mestre}</p>
-              <div className="tags">
-                <span className="tag">Medieval</span>
-                <span className="tag">Mistério</span>
-              </div>
-              <button className="botao-avaliar">Honrar Mestre</button>
-            </div>
-          </div>
+          <JogadorCard
+            honrarMestre={true}
+            nome={"Mestre: " + mestreName}
+            id={mesa[0].mestre}
+            email={mestreName} // Adicione o campo de e-mail, se disponível
+            temas={temaFavoritoMestre}
+          />
         </div>
       ) : (
         <p>Carregando detalhes da mesa...</p>

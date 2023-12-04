@@ -36,7 +36,7 @@ function RPGTableCard({ tableData }) {
           <h3>{tableData.title}</h3>
           <span className="tag">{tableData.system}</span>
           <p>
-            <FaUser /> Mestre: {tableData.dungeonMasterId}
+            <FaUser /> Mestre: {tableData.dungeonMasterName}
           </p>
           <p>
             <FaBookOpen /> Vagas: {tableData.vacancies}

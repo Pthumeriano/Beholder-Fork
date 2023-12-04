@@ -1,9 +1,16 @@
 // JogadorCard.js
 import "../Styles/CardRPG.css";
-import "../Styles/Dmesas.css";
+
 import React from "react";
 
-const JogadorCard = ({ nome, id, email, temas = [], premiar }) => {
+const JogadorCard = ({
+  nome,
+  id,
+  email,
+  temas = [],
+  honrarJogador,
+  honrarMestre,
+}) => {
   return (
     <div className="sessao-perfil">
       <div className="info-perfil">
@@ -12,16 +19,21 @@ const JogadorCard = ({ nome, id, email, temas = [], premiar }) => {
         <p className="username">{"email: " + email}</p>
         <div className="tags">
           {temas.length > 0 && (
-            <ul className="">
+            <ul className="tags-list">
               {temas.map((tema) => (
-                <li className="tag" key={tema.id}>
+                <span className="tag" key={tema}>
                   {tema}
-                </li>
+                </span>
               ))}
             </ul>
           )}
         </div>
-        {premiar && <button className="botao-avaliar">Honrar Jogador</button>}
+        {honrarJogador && (
+          <button className="botao-avaliar">Honrar Jogador</button>
+        )}
+        {honrarMestre && (
+          <button className="botao-avaliar">Honrar Mestre</button>
+        )}
       </div>
     </div>
   );

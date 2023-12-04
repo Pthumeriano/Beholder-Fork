@@ -1,30 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/Mesas.css";
-import { FaChevronDown } from "react-icons/fa";
 import RPGTableCard from "../components/RPGTableCard";
 import JogadoresF from "../components/JogadoresF";
-import axios from "axios";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-
-import I1 from "../img/05.jpg";
 import { useSearch } from "../contexts/SearchContext";
+import { getUsuarioPorId } from "../services/api/usuario";
+import { getMesas } from "../services/api/mesa";
+import { Link } from "react-router-dom";
 
 const MesasF = () => {
   const [activeTab, setActiveTab] = useState("mesas");
-  const [mesas, setMesas] = useState([]); // Estado para armazenar os dados das mesas
+  const [mesas, setMesas] = useState([]);
+
+  const fetchMestreName = async (id) => {
+    try {
+      console.log(`Fetching mestre name for ID: ${id}`);
+      const mestre = await getUsuarioPorId(id);
+      console.log("Mestre data:", mestre);
+      return mestre.data[0].nome; // Supondo que a resposta é um array com um único item
+    } catch (error) {
+      console.error("Erro ao buscar mestre: ", error);
+      return "Mestre Desconhecido";
+    }
+  };
 
   useEffect(() => {
-    const fetchMesas = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4200/api/mesas");
-        setMesas(response.data); // Atualiza o estado com as mesas recebidas
+        const response = await getMesas();
+        const mesasData = response.data;
+
+        console.log("Mesas data:", mesasData);
+
+        const mestresNames = await Promise.all(
+          mesasData.map((mesa) => fetchMestreName(mesa.mestre))
+        );
+
+        console.log("Mestres names:", mestresNames);
+
+        const mesasAtualizadas = mesasData.map((mesa, index) => ({
+          ...mesa,
+          dungeonMasterName: mestresNames[index],
+        }));
+
+        console.log("Mesas atualizadas:", mesasAtualizadas);
+
+        setMesas(mesasAtualizadas);
       } catch (error) {
         console.error("Erro ao buscar dados: ", error);
       }
     };
 
-    fetchMesas();
+    fetchData();
   }, []);
 
   const { search, setSearch } = useSearch();
@@ -58,8 +84,6 @@ const MesasF = () => {
 
       {activeTab === "mesas" && (
         <>
-          {/* ...filtros */}
-
           {mesas
             .filter((mesa) =>
               mesa.titulo.toLowerCase().includes(search.toLowerCase())
@@ -79,7 +103,7 @@ const MesasF = () => {
                   period: mesa.periodo,
                   price: mesa.preco,
                   vacancies: mesa.vagas,
-                  dungeonMasterId: mesa.mestre,
+                  dungeonMasterName: mesa.dungeonMasterName,
                   chatId: mesa.chat,
                 }}
               />
