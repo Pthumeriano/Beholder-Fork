@@ -44,7 +44,7 @@ export function App() {
             <Route path="/noti" component={Noti} />
             <Route path="/criarmesa" component={CriarMesa} />
             <Route path="/dmesas/:id" component={Dmesas} />
-            <Route path="/chat" component={Chat} />
+            <Route path="/chat/:id" component={Chat} />
           </Switch>
         </div>
       </Router>

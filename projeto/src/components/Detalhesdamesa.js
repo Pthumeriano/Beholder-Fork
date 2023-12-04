@@ -8,6 +8,7 @@ import logovalor from "../img/logovalor.png";
 import logovagas from "../img/logovagas2.png";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Detalhesdamesa() {
   const { id } = useParams();
@@ -56,8 +57,9 @@ function Detalhesdamesa() {
           <p>Vagas: {mesa[0].vagas}</p>
           <img src={logovalor} alt="Logo Valor" className="logo-valor" />
           <p>Preço: {mesa[0].preco > 0 ? "R$ " + mesa[0].preco : "Grátis"}</p>
-
-          <button className="botao-participante">Entrar</button>
+          <Link to={`/chat/${id}`}>
+            <button className="botao-participante">Entrar</button>
+          </Link>
 
           <div className="sessao-perfil">
             <div className="info-perfil">

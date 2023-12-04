@@ -1,0 +1,8 @@
+.sidebar-jogadores {
+  width: 200px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 30px;
+}

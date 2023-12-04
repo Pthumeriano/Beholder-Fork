@@ -1,34 +1,38 @@
+// JogadoresList.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "../Styles/CardRPG.css";
 import { useSearch } from "../contexts/SearchContext";
 import JogadorCard from "./JogadorCard";
-import { listarTemasFavoritos } from "../services/api/usuario";
+import { getUsuarioTemaPorId, listarUsuarios } from "../services/api/usuario";
 
 const JogadoresList = () => {
   const [jogadores, setJogadores] = useState([]);
   const [temasDosJogadores, setTemasDosJogadores] = useState({});
 
   useEffect(() => {
-    const fetchJogadores = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4200/api/usuarios");
-        setJogadores(response.data);
+        const usuariosResponse = await listarUsuarios();
+        const usuarios = usuariosResponse.data;
+
+        setJogadores(usuarios);
+
+        const temasResponse = await Promise.all(
+          usuarios.map((usuario) => getUsuarioTemaPorId(usuario.id))
+        );
+
+        const temasDosJogadores = {};
+        temasResponse.forEach((response, index) => {
+          temasDosJogadores[usuarios[index].id] = response;
+        });
+
+        setTemasDosJogadores(temasDosJogadores);
       } catch (error) {
-        console.error("Erro ao buscar jogadores: ", error);
+        console.error("Erro ao buscar dados: ", error);
       }
     };
 
-    const fetchTemasDosJogadores = async () => {
-      try {
-        setTemasDosJogadores((await listarTemasFavoritos()).data);
-      } catch (error) {
-        console.error("Erro ao buscar temas dos jogadores: ", error);
-      }
-    };
-
-    fetchJogadores();
-    fetchTemasDosJogadores();
+    fetchData();
   }, []);
 
   const { search } = useSearch();
@@ -42,9 +46,11 @@ const JogadoresList = () => {
           )
           .map((jogador) => (
             <JogadorCard
+              key={jogador.id}
               nome={jogador.nome}
+              id={jogador.id}
               email={jogador.email}
-              temas={temasDosJogadores[jogador.id]}
+              temas={temasDosJogadores[jogador.id] || []}
             />
           ))}
     </div>

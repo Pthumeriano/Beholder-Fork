@@ -1,5 +1,8 @@
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
+import SidebarJogadores from "../components/SidebarJogadores";
+import "../Styles/Chat.css";
+import ChatComponent from "../components/ChatComponent";
 
 function Chat() {
   return (
@@ -10,6 +13,9 @@ function Chat() {
           <Sidebar />
         </div>
         <div className="divider"></div>
+        <ChatComponent />
+        <div className="divider"></div>
+        <SidebarJogadores />
       </div>
     </div>
   );
