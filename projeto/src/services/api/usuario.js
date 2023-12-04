@@ -55,3 +55,7 @@ export const getUsuarioTemaPorId = async (id) => {
 export const listarUsuarios = async () => {
   return await api.get("/usuarios");
 };
+
+export const getUsuarioPorId = async (id) => {
+  return await api.get(`/usuario/${id}`);
+};

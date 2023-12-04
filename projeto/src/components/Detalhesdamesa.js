@@ -63,20 +63,13 @@ function Detalhesdamesa() {
 
           <div className="sessao-perfil">
             <div className="info-perfil">
-              <h2>Amanda Amaral</h2>
-              <p className="username">@amandx</p>
+              <h2>Mestre: {mesa[0].mestre}</h2>
+              <p className="username">ID: {mesa[0].mestre}</p>
               <div className="tags">
                 <span className="tag">Medieval</span>
                 <span className="tag">Mistério</span>
               </div>
-              <div className="avaliacao">
-                <MdStar className="star" />
-                <MdStar className="star" />
-                <MdStar className="star" />
-                <MdStarHalf className="star" />
-                <MdStarBorder className="star" />
-              </div>
-              <button className="botao-avaliar">Avaliar</button>
+              <button className="botao-avaliar">Honrar Mestre</button>
             </div>
           </div>
         </div>

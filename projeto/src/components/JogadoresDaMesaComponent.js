@@ -1,58 +1,86 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "../Styles/CardRPG.css";
 import { useSearch } from "../contexts/SearchContext";
 import JogadorCard from "./JogadorCard";
-import { listarTemasFavoritos } from "../services/api/usuario";
+import {
+  getUsuarioTemaPorId,
+  listarUsuarios,
+  getUsuarioPorId,
+} from "../services/api/usuario";
+import { getUsuarioMesa } from "../services/api/usuariomesa";
 import { useParams } from "react-router-dom";
 
 const JogadoresList = () => {
-  const [jogadores, setJogadores] = useState([]);
+  const [jogadoresMesa, setJogadoresMesa] = useState([]);
   const [temasDosJogadores, setTemasDosJogadores] = useState({});
 
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchJogadores = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:4200/api/usuariomesa/${id}`
+        const usuariosResponse = await listarUsuarios();
+        const usuarios = usuariosResponse.data;
+
+        setJogadoresMesa(await fetchUsuariosMesa(id));
+
+        const temasResponse = await Promise.all(
+          usuarios.map((usuario) => getUsuarioTemaPorId(usuario.id))
         );
-        setJogadores(response.data);
+
+        const temasDosJogadores = {};
+        temasResponse.forEach((response, index) => {
+          temasDosJogadores[usuarios[index].id] = response;
+        });
+
+        setTemasDosJogadores(temasDosJogadores);
       } catch (error) {
-        console.error("Erro ao buscar relação usuarioMesa: ", error);
+        console.error("Erro ao buscar dados: ", error);
       }
     };
 
-    const fetchTemasDosJogadores = async () => {
-      try {
-        setTemasDosJogadores((await listarTemasFavoritos()).data);
-      } catch (error) {
-        console.error("Erro ao buscar temas dos jogadores: ", error);
-      }
-    };
-
-    fetchJogadores();
-    fetchTemasDosJogadores();
+    fetchData();
   }, []);
+
+  const fetchUsuariosMesa = async (mesaId) => {
+    try {
+      const result = await getUsuarioMesa(mesaId);
+      const usuariosMesaIds = result.data
+        .flat()
+        .map((usuario) => usuario.idusuario);
+
+      const usuariosDetalhados = await Promise.all(
+        usuariosMesaIds.map((id) => getUsuarioPorId(id))
+      );
+
+      const jogadoresMesa = usuariosDetalhados.map(
+        (usuario) => usuario.data[0]
+      );
+      console.log("Usuários da mesa:");
+      console.log(jogadoresMesa);
+
+      return jogadoresMesa;
+    } catch (error) {
+      console.error("Erro ao buscar usuários da mesa: ", error);
+      return [];
+    }
+  };
 
   const { search } = useSearch();
 
   return (
     <div>
       {temasDosJogadores &&
-        jogadores
-          .filter((jogador) =>
-            jogador.nome.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((jogador, index) => (
-            <JogadorCard
-              key={index} // Use the index as the key
-              nome={jogador.nome}
-              email={jogador.email}
-              temas={temasDosJogadores[jogador.id]}
-            />
-          ))}
+        jogadoresMesa.map((jogador) => (
+          <JogadorCard
+            premiar={true}
+            key={jogador.id}
+            nome={jogador.nome}
+            id={jogador.id}
+            email={jogador.email}
+            temas={temasDosJogadores[jogador.id] || []}
+          />
+        ))}
     </div>
   );
 };

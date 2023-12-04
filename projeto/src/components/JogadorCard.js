@@ -21,7 +21,7 @@ const JogadorCard = ({ nome, id, email, temas = [], premiar }) => {
             </ul>
           )}
         </div>
-        {premiar && <button className="botao-avaliar">Premiar</button>}
+        {premiar && <button className="botao-avaliar">Honrar Jogador</button>}
       </div>
     </div>
   );
