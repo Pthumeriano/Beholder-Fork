@@ -10,6 +10,7 @@ import * as JWT from "jwt-decode";
 import { useSearch } from "../contexts/SearchContext";
 import { getMinhasMesas } from "../services/api/mesa";
 import { listarMesasDoUsuario } from "../services/api/usuariomesa";
+import { getUsuarioPorId } from "../services/api/usuario";
 
 function getCookieValue(nome) {
   const cookies = document.cookie.split("; ");
@@ -58,7 +59,13 @@ function UserProfile() {
           console.log("Response:", response); // Verifique a resposta da requisição
 
           // Ajuste para extrair diretamente os detalhes da mesa do objeto resposta
-          const mesasDetalhadas = response.data.map((item) => item.mesa);
+          const mesasDetalhadas = await Promise.all(
+            response.data.map(async (item) => {
+              const mesa = item.mesa;
+              const mestre = await getUsuarioPorId(mesa.mestre);
+              return { ...mesa, mestre: mestre.data[0].nome };
+            })
+          );
 
           setUserMesas(mesasDetalhadas);
         }
@@ -160,34 +167,30 @@ function UserProfile() {
 
       {activeTab === "mesas" && (
         <>
-          {activeTab === "mesas" && (
-            <>
-              {userMesas
-                .filter((mesa) =>
-                  mesa.titulo.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((mesa) => (
-                  <RPGTableCard
-                    key={mesa.id}
-                    tableData={{
-                      id: mesa.id,
-                      title: mesa.titulo,
-                      subtitle: mesa.subtitulo,
-                      system: mesa.sistema,
-                      description: mesa.descricao,
-                      createdOn: mesa.criado_em,
-                      date: mesa.dia,
-                      time: mesa.horario,
-                      period: mesa.periodo,
-                      price: mesa.preco,
-                      vacancies: mesa.vagas,
-                      dungeonMasterName: userData[0].nome,
-                      chatId: mesa.chat,
-                    }}
-                  />
-                ))}
-            </>
-          )}
+          {userMesas
+            .filter((mesa) =>
+              mesa.titulo.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((mesa) => (
+              <RPGTableCard
+                key={mesa.id}
+                tableData={{
+                  id: mesa.id,
+                  title: mesa.titulo,
+                  subtitle: mesa.subtitulo,
+                  system: mesa.sistema,
+                  description: mesa.descricao,
+                  createdOn: mesa.criado_em,
+                  date: mesa.dia,
+                  time: mesa.horario,
+                  period: mesa.periodo,
+                  price: mesa.preco,
+                  vacancies: mesa.vagas,
+                  dungeonMasterName: mesa.mestre,
+                  chatId: mesa.chat,
+                }}
+              />
+            ))}
         </>
       )}
 
