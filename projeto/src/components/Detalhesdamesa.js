@@ -7,7 +7,11 @@ import logovalor from "../img/logovalor.png";
 import logovagas from "../img/logovagas2.png";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { getUsuarioPorId, getUsuarioTemaPorId } from "../services/api/usuario";
+import {
+  entrarNaMesa,
+  getUsuarioPorId,
+  getUsuarioTemaPorId,
+} from "../services/api/usuario";
 import { getMesa } from "../services/api/mesa";
 import JogadorCard from "./JogadorCard";
 
@@ -62,6 +66,19 @@ function Detalhesdamesa() {
     fetchData();
   }, [id]);
 
+  const handleEntrarNaMesa = async () => {
+    try {
+      const mesaId = mesa[0].id;
+      await entrarNaMesa(mesaId);
+
+      const response = await getMesa(id);
+      const mesaData = response.data;
+      setMesa(mesaData);
+    } catch (error) {
+      alert("Erro. Contate um administrador. " + error);
+    }
+  };
+
   const backgroundStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
@@ -92,7 +109,9 @@ function Detalhesdamesa() {
           <img src={logovalor} alt="Logo Valor" className="logo-valor" />
           <p>Preço: {mesa[0].preco > 0 ? "R$ " + mesa[0].preco : "Grátis"}</p>
           <Link to={`/chat/${id}`}>
-            <button className="botao-participante">Entrar</button>
+            <button onClick={handleEntrarNaMesa} className="botao-participante">
+              Entrar
+            </button>
           </Link>
 
           <JogadorCard

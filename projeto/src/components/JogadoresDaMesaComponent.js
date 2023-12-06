@@ -13,7 +13,6 @@ import { useParams } from "react-router-dom";
 const JogadoresList = () => {
   const [jogadoresMesa, setJogadoresMesa] = useState([]);
   const [temasDosJogadores, setTemasDosJogadores] = useState({});
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -40,7 +39,12 @@ const JogadoresList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [id]); // Adicionando 'id' como dependência do useEffect
+
+  useEffect(() => {
+    // Este useEffect é acionado quando 'jogadoresMesa' é atualizado
+    console.log("Jogadores da mesa foram atualizados:", jogadoresMesa);
+  }, [jogadoresMesa]); // Adicionando 'jogadoresMesa' como dependência do useEffect
 
   const fetchUsuariosMesa = async (mesaId) => {
     try {

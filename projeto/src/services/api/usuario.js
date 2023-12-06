@@ -1,5 +1,6 @@
 import { api } from ".";
 import { buscarTema } from "../api/tema";
+import { getCookieValue } from "../utils/auth";
 
 export const criarNovoUsuario = async (data) => {
   if (data.datanascimento) {
@@ -58,4 +59,36 @@ export const listarUsuarios = async () => {
 
 export const getUsuarioPorId = async (id) => {
   return await api.get(`/usuario/${id}`);
+};
+
+export const entrarNaMesa = async (mesaId) => {
+  try {
+    // Obtenha o token do cookie
+    const token = getCookieValue("BeholderToken");
+
+    // Verifique se há um token antes de fazer a solicitação
+    if (!token) {
+      alert("É necessário estar logado para entrar em uma mesa");
+      return;
+    }
+
+    // Configure o cabeçalho com o token
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    };
+
+    const response = await api.post(
+      `/usuarios/entrar-na-mesa/${mesaId}`,
+      null,
+      config
+    );
+
+    return response;
+  } catch (error) {
+    console.error("Erro ao entrar na mesa:", error);
+    throw error;
+  }
 };
