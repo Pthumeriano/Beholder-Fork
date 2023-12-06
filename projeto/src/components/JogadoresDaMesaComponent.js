@@ -45,21 +45,14 @@ const JogadoresList = () => {
   const fetchUsuariosMesa = async (mesaId) => {
     try {
       const result = await getUsuarioMesa(mesaId);
-      const usuariosMesaIds = result.data
-        .flat()
-        .map((usuario) => usuario.idusuario);
-
-      const usuariosDetalhados = await Promise.all(
-        usuariosMesaIds.map((id) => getUsuarioPorId(id))
+      const usuariosMesaDetalhados = result.data.map(
+        (usuarioMesa) => usuarioMesa.usuario
       );
 
-      const jogadoresMesa = usuariosDetalhados.map(
-        (usuario) => usuario.data[0]
-      );
       console.log("Usuários da mesa:");
-      console.log(jogadoresMesa);
+      console.log(usuariosMesaDetalhados);
 
-      return jogadoresMesa;
+      return usuariosMesaDetalhados;
     } catch (error) {
       console.error("Erro ao buscar usuários da mesa: ", error);
       return [];

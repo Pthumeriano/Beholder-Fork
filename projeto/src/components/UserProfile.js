@@ -9,6 +9,7 @@ import axios from "axios";
 import * as JWT from "jwt-decode";
 import { useSearch } from "../contexts/SearchContext";
 import { getMinhasMesas } from "../services/api/mesa";
+import { listarMesasDoUsuario } from "../services/api/usuariomesa";
 
 function getCookieValue(nome) {
   const cookies = document.cookie.split("; ");
@@ -50,9 +51,16 @@ function UserProfile() {
           const decodedToken = JWT.jwtDecode(token);
           const userId = decodedToken.userId;
 
-          const response = await getMinhasMesas(userId);
+          console.log("userID:", userId); // Verifique se o userID está correto
 
-          setUserMesas(response.data);
+          const response = await listarMesasDoUsuario(userId);
+
+          console.log("Response:", response); // Verifique a resposta da requisição
+
+          // Ajuste para extrair diretamente os detalhes da mesa do objeto resposta
+          const mesasDetalhadas = response.data.map((item) => item.mesa);
+
+          setUserMesas(mesasDetalhadas);
         }
       } catch (error) {
         console.error("Erro ao obter as mesas do usuário:", error);
