@@ -16,10 +16,10 @@ function FormCriarMesa() {
   const sistemaInputRef = useRef(null);
   const descricaoInputRef = useRef(null);
   const temaInputRef = useRef(null);
-  const periodoInputRef = useRef(null);
-  const diaSemanaInputRef = useRef(null);
-  const diaNumeroInputRef = useRef(null);
-  const horarioInputRef = useRef(null);
+  const periodoInputRef = useRef("");
+  const diaSemanaInputRef = useRef("");
+  const diaNumeroInputRef = useRef("");
+  const horarioInputRef = useRef("");
   const vagasInputRef = useRef(null);
   const precoInputRef = useRef(null);
 
@@ -79,7 +79,9 @@ function FormCriarMesa() {
       console.log(mesa);
       history.push(`/dmesas/${mesa.data.mesa.data[0].id}`);
     } catch (error) {
-      if ("error" in error.response.data) {
+      if (!diaSemanaInputRef.current) {
+        alert("Selecione período e dia");
+      } else if ("error" in error.response.data) {
         alert(error.response.data.error);
       } else {
         alert(error.response.data.errors[0].msg);
