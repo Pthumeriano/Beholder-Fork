@@ -18,14 +18,14 @@ import JogadorCard from "./JogadorCard";
 function Detalhesdamesa() {
   const { id } = useParams();
   const [mesa, setMesa] = useState(null);
-  const [mestreName, setMestreName] = useState("Nenhum Tema Favorito");
+  const [mestre, setMestre] = useState("Nenhum Tema Favorito");
   const [temaFavoritoMestre, setTemaFavoritoMestre] = useState([]);
 
   useEffect(() => {
-    const fetchMestreName = async (mestreId) => {
+    const fetchMestre = async (mestreId) => {
       try {
         const mestre = await getUsuarioPorId(mestreId);
-        return mestre.data[0].nome;
+        return mestre.data[0];
       } catch (error) {
         console.error("Erro ao buscar mestre: ", error);
         return "Mestre Desconhecido";
@@ -49,14 +49,11 @@ function Detalhesdamesa() {
 
         console.log("Mesa data:", mesaData);
 
-        const mestreName = await fetchMestreName(mesaData[0].mestre);
+        const mestre = await fetchMestre(mesaData[0].mestre);
         const temaFavorito = await fetchTemaFavoritoMestre(mesaData[0].mestre);
 
-        console.log("Mestre name:", mestreName);
-        console.log("Tema favorito do mestre:", temaFavorito);
-
         setMesa(mesaData);
-        setMestreName(mestreName);
+        setMestre(mestre);
         setTemaFavoritoMestre(temaFavorito);
       } catch (error) {
         console.error("Erro na solicitação:", error);
@@ -116,9 +113,9 @@ function Detalhesdamesa() {
 
           <JogadorCard
             honrarMestre={true}
-            nome={"Mestre: " + mestreName}
+            nome={"Mestre: " + mestre.nome}
             id={mesa[0].mestre}
-            email={mestreName} // Adicione o campo de e-mail, se disponível
+            email={mestre.email} // Adicione o campo de e-mail, se disponível
             temas={temaFavoritoMestre}
           />
         </div>
