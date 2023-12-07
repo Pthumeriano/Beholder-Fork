@@ -66,7 +66,7 @@ function Detalhesdamesa() {
   const handleEntrarNaMesa = async () => {
     try {
       const mesaId = mesa[0].id;
-      await entrarNaMesa(mesaId);
+      await Promise.resolve(entrarNaMesa(mesaId));
 
       const response = await getMesa(id);
       const mesaData = response.data;

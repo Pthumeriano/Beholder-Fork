@@ -48,7 +48,7 @@ function FormCriarMesa() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mestre = (await fetchUserData())[0].id;
+      const mestre = (await fetchUserData()).id;
       const titulo = tituloInputRef.current.value;
       const subtitulo = subtituloInputRef.current.value;
       const sistema = sistemaInputRef.current.value;

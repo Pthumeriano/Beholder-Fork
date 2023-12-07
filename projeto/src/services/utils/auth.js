@@ -1,5 +1,6 @@
 import * as JWT from "jwt-decode";
 import axios from "axios";
+import { api } from "../api";
 
 export function getCookieValue(nome) {
   const cookies = document.cookie.split("; ");
@@ -21,9 +22,14 @@ export const fetchUserData = async () => {
       const response = await axios.get(
         `http://localhost:4200/api/usuario/${userId}`
       );
-      return response.data;
+
+      return response.data[0];
     }
   } catch (error) {
     console.error("Erro ao obter os dados do usuário:", error);
   }
+};
+
+export const fetchOtherUsers = async (id) => {
+  return await api.get(`/usuariomesa/${id}`);
 };
