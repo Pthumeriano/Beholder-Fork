@@ -9,3 +9,9 @@ export const listarMesasDoUsuario = async (usuarioId) => {
     withCredentials: true,
   });
 };
+
+export const listarUsuariosDaMesa = async (mesaId) => {
+  return await api.get(`/usuariomesa/${mesaId}`, {
+    withCredentials: true,
+  });
+};
