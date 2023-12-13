@@ -91,7 +91,23 @@ export default function ChatComponent() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit">Enviar</button>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: "#8b0000",
+            color: "white",
+            cursor: "pointer",
+            marginLeft: "30px",
+            fontSize: "16px",
+            padding: "8px 12px",
+            borderRadius: "5px",
+            transition: "background-color 0.3s, transform 0.3s",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
+          onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+        >
+          Enviar
+        </button>
       </form>
     </div>
   );
