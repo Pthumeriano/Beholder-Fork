@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../Styles/Entrar.css";
 import logo from "../img/logo.png"; // Importe a imagem
 import axios from "axios";
-import Cookies from "js-cookies" 
+import Cookies from "js-cookie" 
 
 class LoginForm extends Component {
   constructor(props) {
