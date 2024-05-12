@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../Styles/Entrar.css";
 import logo from "../img/logo.png"; // Importe a imagem
 import axios from "axios";
+import Cookies from "js-cookies" 
 
 class LoginForm extends Component {
   constructor(props) {
@@ -20,10 +21,10 @@ class LoginForm extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const email = this.state.email;
     const senha = this.state.senha;
-
+  
     try {
       const response = await axios.post(
         "https://next-beholder-server.onrender.com/api/usuarios/login",
@@ -35,9 +36,12 @@ class LoginForm extends Component {
           withCredentials: true,
         }
       );
-
+  
       console.log("Usuário autenticado com sucesso:", response.data);
-
+  
+      // Salva o cookie utilizando a biblioteca js-cookie
+      Cookies.set("BeholderToken", response.data.token, { expires: 30, secure: true, sameSite: "none" });
+  
       // Use history.push para redirecionar após o login
       this.props.history.push("/feedpage");
     } catch (error) {
