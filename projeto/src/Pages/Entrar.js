@@ -26,7 +26,7 @@ class LoginForm extends Component {
 
     try {
       const response = await axios.post(
-        "http://localhost:4200/api/usuarios/login",
+        "https://next-beholder-server.onrender.com/api/usuarios/login",
         {
           email: email,
           senha: senha,

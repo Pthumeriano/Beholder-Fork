@@ -20,7 +20,7 @@ export const fetchUserData = async () => {
       const decodedToken = JWT.jwtDecode(token);
       const userId = decodedToken.userId;
       const response = await axios.get(
-        `http://localhost:4200/api/usuario/${userId}`
+        `https://next-beholder-server.onrender.com/api/usuario/${userId}`
       );
 
       return response.data[0];
