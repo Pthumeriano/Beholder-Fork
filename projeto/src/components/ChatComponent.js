@@ -44,6 +44,10 @@ export default function ChatComponent() {
     };
 
     fetchData();
+
+    const intervalId = setInterval(fetchData, 5000);
+
+    return () => clearInterval(intervalId);
   }, [id]);
 
   const handleSendMessage = async (e) => {
