@@ -56,7 +56,7 @@ const SignupForm = () => {
       await criarNovoUsuario({ nome, datanascimento, email, senha });
       await autenticar({ email, senha });
 
-      history.push('/feedpage');
+      history.push('/entrar');
     } catch (error) {
       if ('error' in error.response.data) {
         alert(error.response.data.error);
