@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f0f0f0;
 }
 
 .cadastro-form {
@@ -12,69 +13,104 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 15px;
-    background-color: #F1F1F1;
+    background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-.form-group input[type="text"],
-.form-group input[type="date"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
+.logo-container {
+    margin-bottom: 1.5rem;
+}
+
+.logo-container img {
+    margin-bottom: 1rem;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: #333333;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
-    margin: 10px 0;
+    font-size: 1rem;
+    margin-top: 10px;
+    box-sizing: border-box;
     height: 50px;
 }
 
-button[type="submit"] {
-    background-color: transparent;
-    color: #8B0000;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin: 10px 0;
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
-button[type="submit"]:hover {
-    background-color: #8B0000;
-    color: #fff;
+.password-requirements {
+    text-align: left;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    list-style-type: none;
+    padding: 0;
 }
 
-.login-link a,
-.signup-link a {
-    color: #8B0000;
-    text-decoration: none;
-    margin: 10px 0;
+.password-requirements li {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
 }
 
-.login-link a:hover,
-.signup-link a:hover {
-    text-decoration: none;
+.password-requirements li .valid {
+    color: green;
+    margin-right: 0.5rem;
+}
+
+.password-requirements li .invalid {
+    color: red;
+    margin-right: 0.5rem;
 }
 
 .submit-button {
     width: 100%;
-    background-color: transparent;
-    color: #8B0000;
+    background-color: #8B0000;
+    color: #ffffff;
     border: 1px solid #8B0000;
     border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
     height: 50px;
-    margin: 10px 0;
+    margin-top: 10px;
+}
+
+.submit-button:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.submit-button:not(:disabled):hover {
+    background-color: #5A0000;
 }
 
 .signup-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #333333;
 }
 
 .signup-link a {
-    display: inline;
+    color: #8B0000;
+    text-decoration: none;
     margin-left: 5px;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
 }
