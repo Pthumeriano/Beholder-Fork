@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./Pages/Home";
@@ -25,30 +25,36 @@ export function App() {
     <SearchContextProvider>
       <Router>
         <div className="App">
-          <Switch>
-            <Route exact path="/">
-              <Navbar />
-              <Home />
-              <Footer />
-            </Route>
-            <Route path="/entrar" component={Entrar} />
-            <Route path="/ajuda" component={Ajuda} />
-            <Route path="/comunidade" component={Comunidade} />
-            <Route path="/mesas" component={Mesas} />
-            <Route path="/jogador" component={Jogador} />
-            <Route path="/cadastro" component={Cadastro} />
-            <Route path="/esqueceu" component={Esqueceu} />
-            <Route path="/deletar" component={Deletar} />
-            <Route path="/perfil" component={Perfil} />
-            <Route path="/feedpage" component={Feedpage} />
-            <Route path="/noti" component={Noti} />
-            <Route path="/criarmesa" component={CriarMesa} />
-            <Route path="/dmesas/:id" component={Dmesas} />
-            <Route path="/chat/:id" component={Chat} />
-          </Switch>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Navbar />
+                  <Home />
+                  <Footer />
+                </>
+              }
+            />
+            <Route path="/entrar" element={<Entrar />} />
+            <Route path="/ajuda" element={<Ajuda />} />
+            <Route path="/comunidade" element={<Comunidade />} />
+            <Route path="/mesas" element={<Mesas />} />
+            <Route path="/jogador" element={<Jogador />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/esqueceu" element={<Esqueceu />} />
+            <Route path="/deletar" element={<Deletar />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/feedpage" element={<Feedpage />} />
+            <Route path="/noti" element={<Noti />} />
+            <Route path="/criarmesa" element={<CriarMesa />} />
+            <Route path="/dmesas/:id" element={<Dmesas />} />
+            <Route path="/chat/:id" element={<Chat />} />
+          </Routes>
         </div>
       </Router>
     </SearchContextProvider>
   );
 }
+
 export default App;
