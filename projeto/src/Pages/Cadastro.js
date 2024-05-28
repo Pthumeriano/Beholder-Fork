@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 import "../Styles/Cadastro.css";
@@ -24,7 +24,7 @@ const SignupForm = () => {
   const dataNascimentoInputRef = useRef(null);
   const emailInputRef = useRef(null);
   const senhaInputRef = useRef(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [password, setPassword] = useState('');
   const [validation, setValidation] = useState({
@@ -56,12 +56,16 @@ const SignupForm = () => {
       await criarNovoUsuario({ nome, datanascimento, email, senha });
       await autenticar({ email, senha });
 
-      history.push('/entrar');
+      navigate('/entrar');
     } catch (error) {
-      if ('error' in error.response.data) {
-        alert(error.response.data.error);
+      if (error.response && error.response.data) {
+        if ('error' in error.response.data) {
+          alert(error.response.data.error);
+        } else {
+          alert(error.response.data.errors[0].msg);
+        }
       } else {
-        alert(error.response.data.errors[0].msg);
+        alert("Ocorreu um erro. Por favor, tente novamente.");
       }
     }
   };
