@@ -96,11 +96,15 @@ const SignupForm = () => {
           </div>
 
           <div className="form-group">
-            <input
-              type="date"
-              name="dataNascimento"
-              ref={dataNascimentoInputRef}
-            />
+          <input
+  type="text"
+  name="dataNascimento"
+  placeholder="Data de Nascimento (DD/MM/AAAA)"
+  ref={dataNascimentoInputRef}
+  pattern="\d{2}/\d{2}/\d{4}"
+  required
+/>
+
           </div>
 
           <div className="form-group">
