@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Alterado useHistory para useNavigate
 
 import "../Styles/formcriarmesa.css";
 import { listarTemas } from "../services/api/tema";
@@ -23,7 +23,7 @@ function FormCriarMesa() {
   const vagasInputRef = useRef(null);
   const precoInputRef = useRef(null);
 
-  const history = useHistory();
+  const navigate = useNavigate(); // Atualizado de useHistory para useNavigate
 
   useEffect(() => {
     const getNumberOfDays = () => {
@@ -77,7 +77,7 @@ function FormCriarMesa() {
       });
 
       console.log(mesa);
-      history.push(`/dmesas/${mesa.data.mesa.data[0].id}`);
+      navigate(`/dmesas/${mesa.data.mesa.data[0].id}`); // Atualizado de history.push para navigate
     } catch (error) {
       if (!diaSemanaInputRef.current) {
         alert("Selecione período e dia");
@@ -157,7 +157,7 @@ function FormCriarMesa() {
               <option value="Segunda-Feira">Segunda-Feira</option>
               <option value="Terça-Feira">Terça-Feira</option>
               <option value="Quarta-Feira">Quarta-Feira</option>
-              <option value="Quint-Feira">Quint-Feira</option>
+              <option value="Quinta-Feira">Quinta-Feira</option>
               <option value="Sexta-Feira">Sexta-Feira</option>
               <option value="Sábado">Sábado</option>
             </select>
@@ -212,7 +212,7 @@ function FormCriarMesa() {
         <div>
           <label htmlFor="vagas">Vagas:</label>
           <select id="vagas" name="vagas" ref={vagasInputRef}>
-            <option value="">Selecione a quatidade</option>
+            <option value="">Selecione a quantidade</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -221,14 +221,13 @@ function FormCriarMesa() {
             <option value="6">6</option>
             <option value="7">7</option>
             <option value="8">8</option>
-            <option value="9">9</option>
-          </select>
+            <option value="9">9</option>          </select>
         </div>
         <div>
-          <label htmlFor="vagas">Preço:</label>
+          <label htmlFor="preco">Preço:</label>
           <select id="preco" name="preco" ref={precoInputRef}>
             <option value="">Preço da sessão</option>
-            <option value="0">Gŕatis!</option>
+            <option value="0">Grátis!</option>
             <option value="1">R$ 1</option>
             <option value="5">R$ 5</option>
             <option value="10">R$ 10</option>
@@ -241,3 +240,4 @@ function FormCriarMesa() {
 }
 
 export default FormCriarMesa;
+
