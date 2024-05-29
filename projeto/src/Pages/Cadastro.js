@@ -19,6 +19,17 @@ const validatePassword = (password) => {
   return { requirements, isValid };
 };
 
+const formatarData = (value) => {
+  const dateValue = value.replace(/\D/g, "");
+  const day = dateValue.substring(0, 2);
+  const month = dateValue.substring(2, 4);
+  const year = dateValue.substring(4, 8);
+
+  if (dateValue.length <= 2) return day;
+  if (dateValue.length <= 4) return `${day}/${month}`;
+  return `${day}/${month}/${year}`;
+};
+
 const SignupForm = () => {
   const usuarioInputRef = useRef(null);
   const dataNascimentoInputRef = useRef(null);
@@ -26,7 +37,7 @@ const SignupForm = () => {
   const senhaInputRef = useRef(null);
   const navigate = useNavigate();
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [validation, setValidation] = useState({
     length: false,
     uppercase: false,
@@ -35,6 +46,7 @@ const SignupForm = () => {
     specialChar: false,
   });
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [dataNascimento, setDataNascimento] = useState("");
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
@@ -44,22 +56,31 @@ const SignupForm = () => {
     setIsPasswordValid(isValid);
   };
 
+  const handleDateChange = (e) => {
+    const formattedDate = formatarData(e.target.value);
+    setDataNascimento(formattedDate);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const nome = usuarioInputRef.current.value;
-      const datanascimento = dataNascimentoInputRef.current.value;
       const email = emailInputRef.current.value;
       const senha = senhaInputRef.current.value;
 
-      await criarNovoUsuario({ nome, datanascimento, email, senha });
+      await criarNovoUsuario({
+        nome,
+        datanascimento: dataNascimento,
+        email,
+        senha,
+      });
       await autenticar({ email, senha });
 
-      navigate('/entrar');
+      navigate("/entrar");
     } catch (error) {
       if (error.response && error.response.data) {
-        if ('error' in error.response.data) {
+        if ("error" in error.response.data) {
           alert(error.response.data.error);
         } else {
           alert(error.response.data.errors[0].msg);
@@ -96,15 +117,15 @@ const SignupForm = () => {
           </div>
 
           <div className="form-group">
-          <input
-  type="text"
-  name="dataNascimento"
-  placeholder="Data de Nascimento (DD/MM/AAAA)"
-  ref={dataNascimentoInputRef}
-  pattern="\d{2}/\d{2}/\d{4}"
-  required
-/>
-
+            <input
+              type="text"
+              name="dataNascimento"
+              placeholder="Data de Nascimento (DD/MM/AAAA)"
+              ref={dataNascimentoInputRef}
+              value={dataNascimento}
+              onChange={handleDateChange}
+              maxLength="10"
+            />
           </div>
 
           <div className="form-group">
@@ -129,24 +150,53 @@ const SignupForm = () => {
             />
             <ul className="password-requirements">
               <li>
-                {validation.length ? <FaCheckCircle className="valid" /> : <FaTimesCircle className="invalid" />} Pelo menos 8 caracteres
+                {validation.length ? (
+                  <FaCheckCircle className="valid" />
+                ) : (
+                  <FaTimesCircle className="invalid" />
+                )}{" "}
+                Pelo menos 8 caracteres
               </li>
               <li>
-                {validation.uppercase ? <FaCheckCircle className="valid" /> : <FaTimesCircle className="invalid" />} Pelo menos uma letra maiúscula
+                {validation.uppercase ? (
+                  <FaCheckCircle className="valid" />
+                ) : (
+                  <FaTimesCircle className="invalid" />
+                )}{" "}
+                Pelo menos uma letra maiúscula
               </li>
               <li>
-                {validation.lowercase ? <FaCheckCircle className="valid" /> : <FaTimesCircle className="invalid" />} Pelo menos uma letra minúscula
+                {validation.lowercase ? (
+                  <FaCheckCircle className="valid" />
+                ) : (
+                  <FaTimesCircle className="invalid" />
+                )}{" "}
+                Pelo menos uma letra minúscula
               </li>
               <li>
-                {validation.number ? <FaCheckCircle className="valid" /> : <FaTimesCircle className="invalid" />} Pelo menos um número
+                {validation.number ? (
+                  <FaCheckCircle className="valid" />
+                ) : (
+                  <FaTimesCircle className="invalid" />
+                )}{" "}
+                Pelo menos um número
               </li>
               <li>
-                {validation.specialChar ? <FaCheckCircle className="valid" /> : <FaTimesCircle className="invalid" />} Pelo menos um caractere especial (!@#$%^&*)
+                {validation.specialChar ? (
+                  <FaCheckCircle className="valid" />
+                ) : (
+                  <FaTimesCircle className="invalid" />
+                )}{" "}
+                Pelo menos um caractere especial (!@#$%^&*)
               </li>
             </ul>
           </div>
 
-          <button type="submit" className="submit-button" disabled={!isPasswordValid}>
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={!isPasswordValid}
+          >
             Inscreva-se
           </button>
         </form>

@@ -18,6 +18,11 @@
     text-align: center;
 }
 
+.cadastro-form .form-group{
+    align-items: left;
+    align-self: left;
+}
+
 .logo-container {
     margin-bottom: 1.5rem;
 }
