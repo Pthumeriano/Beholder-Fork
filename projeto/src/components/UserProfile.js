@@ -23,6 +23,14 @@ function getCookieValue(nome) {
   return null;
 }
 
+const formatarData = (dataISO) => {
+  const data = new Date(dataISO);
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+  const ano = data.getFullYear();
+  return `${dia}/${mes}/${ano}`;
+};
+
 function UserProfile() {
   const [activeTab, setActiveTab] = useState("UserProfile");
   const [userData, setUserData] = useState([]);
@@ -100,6 +108,9 @@ function UserProfile() {
           {(userData.length > 0 && userData[0].descricao) ||
             "Nenhuma descrição disponível"}
         </p>
+        {userData.length > 0 && userData[0].criado_em && (
+          <p className="user-tag">{`Desde: ${formatarData(userData[0].criado_em)}`}</p>
+        )}
         <div className="details">
           <div className="detail">
             <img src={globeIcon} alt="Globo Icon" className="icon" />
@@ -180,7 +191,7 @@ function UserProfile() {
                   subtitle: mesa.subtitulo,
                   system: mesa.sistema,
                   description: mesa.descricao,
-                  createdOn: mesa.criado_em,
+                  createdOn: formatarData(mesa.criado_em),
                   date: mesa.dia,
                   time: mesa.horario,
                   period: mesa.periodo,
