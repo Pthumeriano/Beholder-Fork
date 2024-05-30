@@ -155,14 +155,6 @@ const SignupForm = () => {
             />
             <ul className="password-requirements">
               <li>
-                {validation.length ? (
-                  <FaCheckCircle className="valid" />
-                ) : (
-                  <FaTimesCircle className="invalid" />
-                )}{" "}
-                Pelo menos 8 caracteres
-              </li>
-              <li>
                 {validation.uppercase ? (
                   <FaCheckCircle className="valid" />
                 ) : (
@@ -193,6 +185,14 @@ const SignupForm = () => {
                   <FaTimesCircle className="invalid" />
                 )}{" "}
                 Pelo menos um caractere especial (!@#$%^&*)
+              </li>
+              <li>
+                {validation.length ? (
+                  <FaCheckCircle className="valid" />
+                ) : (
+                  <FaTimesCircle className="invalid" />
+                )}{" "}
+                Pelo menos 8 caracteres
               </li>
             </ul>
           </div>
