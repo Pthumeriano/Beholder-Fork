@@ -26,8 +26,13 @@ const formatarData = (value) => {
   const year = dateValue.substring(4, 8);
 
   if (dateValue.length <= 2) return day;
-  if (dateValue.length <= 4) return `${day}/${month}`;
-  return `${day}/${month}/${year}`;
+  if (dateValue.length <= 4) return `${day}-${month}`;
+  return `${day}-${month}-${year}`;
+};
+
+const formatarDataParaEnvio = (data) => {
+  const [day, month, year] = data.split('/');
+  return `${month}/${day}/${year}`;
 };
 
 const SignupForm = () => {
@@ -68,14 +73,14 @@ const SignupForm = () => {
       const nome = usuarioInputRef.current.value;
       const email = emailInputRef.current.value;
       const senha = senhaInputRef.current.value;
+      const dataNascimentoFormatada = formatarDataParaEnvio(dataNascimento);
 
       await criarNovoUsuario({
         nome,
-        datanascimento: dataNascimento,
+        datanascimento: dataNascimentoFormatada,
         email,
         senha,
       });
-      await autenticar({ email, senha });
 
       navigate("/entrar");
     } catch (error) {
@@ -120,7 +125,7 @@ const SignupForm = () => {
             <input
               type="text"
               name="dataNascimento"
-              placeholder="Data de Nascimento (DD/MM/AAAA)"
+              placeholder="Data de Nascimento (DD-MM-AAAA)"
               ref={dataNascimentoInputRef}
               value={dataNascimento}
               onChange={handleDateChange}
