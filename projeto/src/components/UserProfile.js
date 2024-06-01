@@ -108,10 +108,9 @@ function UserProfile() {
           {(userData.length > 0 && userData[0].descricao) ||
             "Nenhuma descrição disponível"}
         </p>
-        <p className="user-tag">
-          {(userData.length > 0 && userData[0].xp) ||
-            "Exp: " + userData[0].xp}
-        </p>
+        {userData.length > 0 && (
+  <p className="user-tag">{`EXP: ${userData[0].xp}`}</p>
+)}
         {userData.length > 0 && userData[0].criado_em && (
           <p className="user-tag">{`Desde: ${formatarData(userData[0].criado_em)}`}</p>
         )}
