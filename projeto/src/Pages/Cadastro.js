@@ -26,7 +26,7 @@ const formatarData = (value) => {
   const year = dateValue.substring(4, 8);
 
   if (dateValue.length <= 2) return day;
-  if (dateValue.length <= 4) return `${day}-${month}`;
+  if (dateValue.length <= 4) return `${day}/${month}`;
   return `${day}/${month}/${year}`;
 };
 
