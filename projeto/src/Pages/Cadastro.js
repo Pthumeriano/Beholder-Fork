@@ -4,7 +4,7 @@ import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 import "../Styles/Cadastro.css";
 import logo from "../img/logo.png";
-import { autenticar, criarNovoUsuario } from "../services/api/usuario";
+import {criarNovoUsuario } from "../services/api/usuario";
 
 const validatePassword = (password) => {
   const requirements = {
@@ -27,7 +27,7 @@ const formatarData = (value) => {
 
   if (dateValue.length <= 2) return day;
   if (dateValue.length <= 4) return `${day}-${month}`;
-  return `${day}-${month}-${year}`;
+  return `${day}/${month}/${year}`;
 };
 
 const formatarDataParaEnvio = (data) => {
